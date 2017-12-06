@@ -116,7 +116,7 @@ app.post('/webhook', function (req, res) {
             }
         
         console.log("## webhookReply ##");
-        console.log(webhookReply);
+        console.log("%j",webhookReply);
 
     } else if (actionName === "input.coffeeorder") {
         var coffee = req.body.result.parameters['Coffee'];
@@ -134,7 +134,7 @@ app.post('/webhook', function (req, res) {
         console.log("## Action not catched!! ##");
     }
 
-    console.log("## res webhookReply ##\n" + webhookReply );
+    console.log("## res webhookReply ##\n %j", webhookReply );
     // the most basic response
     res.status(200).json({
         source: 'webhook',
