@@ -2,7 +2,7 @@ const REQUIRE_AUTH = true
 
 //export js files
 module.exports = {
-    authCheck: function(authToken){
+    authCheck: function(req, authToken){
         // we have a simple authentication
         if (REQUIRE_AUTH) {
             if (req.headers['auth-token'] !== authToken) {

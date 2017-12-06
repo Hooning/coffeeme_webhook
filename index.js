@@ -26,7 +26,7 @@ app.post('/webhook', function (req, res) {
     console.log("## req.body ##\n" + req.body)
 
     // Check authentication token
-    serverValid.authCheck(AUTH_TOKEN)
+    serverValid.authCheck(req, AUTH_TOKEN)
 
     // Check request validation
     serverValid.valCheck(req);
