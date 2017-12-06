@@ -61,58 +61,62 @@ app.post('/webhook', function (req, res) {
 
         text1 = text1.toString();
         
-        webhookReply = {
-            "slack": {
-                "text": text1,
-                "attachments": [
-                    {
-                        "text": "You can also choose from here..",
-                        "fallback": "You are unable to choose a coffee",
-                        "callback_id": "wopr_coffee",
-                        "color": "#724f0c",
-                        "attachment_type": "default",
-                        "actions": [
-                            {
-                                "name": "Coffee",
-                                "text": "Caffe Americano",
-                                "type": "button",
-                                "value": "Caffe Americano"
-                            },
-                            {
-                                "name": "Coffee",
-                                "text": "Caffe Latte",
-                                "type": "button",
-                                "value": "Caffe Latte"
-                            },
-                            {
-                                "name": "Coffee",
-                                "text": "Cappuccino",
-                                "type": "button",
-                                "value": "Cappuccino"
-                            },
-                            {
-                                "name": "Coffee",
-                                "text": "Caffe Mocha",
-                                "type": "button",
-                                "value": "Caffe Mocha"
-                            },
-                            {
-                                "name": "Coffee",
-                                "text": "Brewed Coffee",
-                                "type": "button",
-                                "value": "Brewed Coffee"
-                            },
-                            {
-                                "name": "Coffee",
-                                "text": "Espresso",
-                                "type": "button",
-                                "value": "Espresso"
-                            }
-                        ]   
-                    }
-                ]
+        webhookReply = 
+            {
+                "slack": {
+                    "text": text1,
+                    "attachments": [
+                        {
+                            "text": "You can also choose from here..",
+                            "fallback": "You are unable to choose a coffee",
+                            "callback_id": "wopr_coffee",
+                            "color": "#724f0c",
+                            "attachment_type": "default",
+                            "actions": [
+                                {
+                                    "name": "Coffee",
+                                    "text": "Caffe Americano",
+                                    "type": "button",
+                                    "value": "Caffe Americano"
+                                },
+                                {
+                                    "name": "Coffee",
+                                    "text": "Caffe Latte",
+                                    "type": "button",
+                                    "value": "Caffe Latte"
+                                },
+                                {
+                                    "name": "Coffee",
+                                    "text": "Cappuccino",
+                                    "type": "button",
+                                    "value": "Cappuccino"
+                                },
+                                {
+                                    "name": "Coffee",
+                                    "text": "Caffe Mocha",
+                                    "type": "button",
+                                    "value": "Caffe Mocha"
+                                },
+                                {
+                                    "name": "Coffee",
+                                    "text": "Brewed Coffee",
+                                    "type": "button",
+                                    "value": "Brewed Coffee"
+                                },
+                                {
+                                    "name": "Coffee",
+                                    "text": "Espresso",
+                                    "type": "button",
+                                    "value": "Espresso"
+                                }
+                            ]   
+                        }
+                    ]
+                }
             }
-        }
+        
+        console.log("## webhookReply ##");
+        console.log(webhookReply);
 
     } else if (actionName === "input.coffeeorder") {
         var coffee = req.body.result.parameters['Coffee'];
