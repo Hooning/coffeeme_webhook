@@ -35,9 +35,9 @@ app.post('/webhook', function (req, res) {
     console.log('* Received action -- %s', req.body.result.action)
 
     var actionName = req.body.result.action;
-    var userName = req.body.result.parameters['user-name']; 
+    var userName = 'David';
     var fileNm = userName + '.txt';
-    var userType = userManage.checkUser(userName, fileNm);
+    var userType = userManage.checkUser(fileNm);
     
     var greetings = "";
 
@@ -117,7 +117,7 @@ app.post('/webhook', function (req, res) {
         var dairy = req.body.result.parameters['Dairy'];
         var hotOrIced = req.body.result.parameters['Hot-or-Ice'];
         var deliveryTime = req.body.result.parameter['time']; 
-
+        console.log("deliveryTime : " + deliveryTime)
         if (coffee && size && hotOrIced && deliveryTime) {
             var datetime = new Date();
             //Coffee|Size|HotorIced|Dairy|DeliverTime|OrderDateTime|
@@ -125,7 +125,7 @@ app.post('/webhook', function (req, res) {
             
             //Create File
             fs.writeFileSync(fileNm, data);
-            console.log(fs.readFileSync(fileNm, 'utf8'));
+            console.log("## FILE ["+fileNm+"]\n"+ fs.readFileSync(fileNm, 'utf8'));
         }
     } else{
         console.log("## Action not catched!! ##");
