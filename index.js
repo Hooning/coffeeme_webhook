@@ -117,7 +117,7 @@ app.post('/webhook', function (req, res) {
         var size = req.body.result.parameters['Size'];
         var dairy = req.body.result.parameters['Dairy'];
         var hotOrIced = req.body.result.parameters['Hot-or-Ice'];
-        var inputTime = req.body.result.parameter['time']; 
+        var inputTime = req.body.result.parameters['time']; 
         var today = new Date();
         var deliveryTime = "";
         
