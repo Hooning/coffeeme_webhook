@@ -137,6 +137,7 @@ app.post('/webhook', function (req, res) {
     
 
     // the most basic response
+    res.setHeader('Content-Type', 'application/json');
     res.status(200).json({
         source: 'webhook',
         speech: webhookReplyJSON,
