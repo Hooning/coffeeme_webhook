@@ -131,7 +131,7 @@ app.post('/webhook', function (req, res) {
     res.status(200).json({
         source: 'webhook',
         speech: webhookReply,
-        displayText: webhookReply
+        displayText: JSON.stringify(webhookReply)
     })
 })
 
