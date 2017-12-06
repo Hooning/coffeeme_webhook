@@ -128,6 +128,10 @@ app.post('/webhook', function (req, res) {
             deliveryTime = inputTime;
         }
         
+        console.log("## coffee : " + coffee);
+        console.log("## size : " + size);
+        console.log("## hotOrIced : " + hotOrIced);
+        console.log("## deliveryTime : " + deliveryTime);
         
         if (coffee && size && hotOrIced && deliveryTime) {
             console.log("## Mandatory field success!");
