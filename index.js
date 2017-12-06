@@ -47,19 +47,23 @@ app.post('/webhook', function (req, res) {
 
     var actionName = req.body.result.action;
     var webhookReply = {};
-    var text1 = '';
-    var text2 = '';
+    var text1 = "";
+    var text2 = "";
 
     if (actionName === "input.welcome") {
         // parameters are stored in req.body.result.parameters
         var userName = req.body.result.parameters['user-name'];
-        text1 = ":wave: Nice to meet you " + userName +
-            "\nOnce again I am CoffeeMeBot.:robot_face:" +
-            "\nPlease order your Coffee :coffee:";
+        text1 += ":wave: Nice to meet you ";
+        text1 += userName.toString();
+        text1 += "\nOnce again I am CoffeeMeBot.:robot_face:" +
+        text1 += "\nPlease order your Coffee :coffee:";
 
+        console.log("text1 : " + text1);
+        console.log("text1.toString() : " + text1.toString());
+        
         webhookReply = {
             "slack": {
-                "text": text1.toString(),
+                "text": text1
                 "attachments": [
                     {
                         "text": "You can also choose from here.. :coffee:",
