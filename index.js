@@ -24,7 +24,7 @@ app.get('/webhook', function (req, res) {
 app.post('/webhook', function (req, res) {
     // we expect to receive JSON data from api.ai here.
     // the payload is stored on req.body
-    console.log("## req.body ##\n" + req.body)
+    console.log("## req.body ## \n%j", req.body)
 
     // Check authentication token
     serverValid.authCheck(req, AUTH_TOKEN)
@@ -64,7 +64,7 @@ app.post('/webhook', function (req, res) {
                     "text": greetings,
                     "attachments": [
                         {
-                            "text": "You can simply type \n or \nchoose from here..",
+                            "text": "You can simply type or choose from here..",
                             "fallback": "You are unable to choose a coffee",
                             "callback_id": "wopr_coffee",
                             "color": "#724f0c",
