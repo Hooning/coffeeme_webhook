@@ -16,6 +16,10 @@ module.exports = {
         m = checkTime(m);
         s = checkTime(s);
         
-        return h + ":" + m + ":" + s;
+        var time = h + ":" + m + ":" + s;
+        
+        console.log("## System Time : " + time);
+        
+        return time;
     },
 }
