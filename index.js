@@ -58,9 +58,6 @@ app.post('/webhook', function (req, res) {
         text1 += " Once again I am CoffeeMeBot.:robot_face:";
         text1 += " Please order your Coffee :coffee:";
 
-        console.log("text1 : " + text1);
-        console.log("text1.toString() : " + text1.toString());
-        
         webhookReply = {
             "slack": {
                 "text": "Hello Once again I am CoffeeMeBot.:robot_face:",
@@ -77,40 +74,40 @@ app.post('/webhook', function (req, res) {
                                 "text": "Caffe Americano",
                                 "type": "button",
                                 "value": "Caffe Americano"
-                        },
+                            },
                             {
                                 "name": "Coffee",
                                 "text": "Caffe Latte",
                                 "type": "button",
                                 "value": "Caffe Latte"
-                        },
+                            },
                             {
                                 "name": "Coffee",
                                 "text": "Cappuccino",
                                 "type": "button",
                                 "value": "Cappuccino"
-                        },
+                            },
                             {
                                 "name": "Coffee",
                                 "text": "Caffe Mocha",
                                 "type": "button",
                                 "value": "Caffe Mocha"
-                        },
+                            },
                             {
                                 "name": "Coffee",
                                 "text": "Brewed Coffee",
                                 "type": "button",
                                 "value": "Brewed Coffee"
-                        },
+                            },
                             {
                                 "name": "Coffee",
                                 "text": "Espresso",
                                 "type": "button",
                                 "value": "Espresso"
-                        }
-                    ]
-                }
-            ]
+                            }
+                        ]   
+                    }
+                ]
             }
         }
 
