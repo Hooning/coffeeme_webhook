@@ -121,7 +121,7 @@ app.post('/webhook', function (req, res) {
         var today = new Date();
         var deliveryTime = "";
         
-        if( inputTime !== ""){
+        if( inputTime === ""){
             deliveryTime = utilFunc.getTime(today);    
         }else{
             deliveryTime = inputTime;
