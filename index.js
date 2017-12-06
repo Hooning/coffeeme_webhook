@@ -47,7 +47,7 @@ app.post('/webhook', function (req, res) {
 
     var actionName = req.body.result.action;
     var userName = req.body.result.parameters['user-name'];    
-    var webhookReply = {};
+//    var webhookReply = {};
     var text1 = "";
     var text2 = "";
 
@@ -62,7 +62,7 @@ app.post('/webhook', function (req, res) {
 
         text1 = text1.toString();
           //webhookReply = text1;
-        webhookReply = 
+        var webhookReply = 
             {
                 "slack": {
                     "text": text1,
@@ -135,8 +135,8 @@ app.post('/webhook', function (req, res) {
     // the most basic response
     res.status(200).json({
         source: 'webhook',
-        speech: webhookReply,
-        displayText: webhookReply
+        speech: JSON.stringify(webhookReply),
+        displayText: JSON.stringify(webhookReply)
     })
 })
 
