@@ -59,9 +59,11 @@ app.post('/webhook', function (req, res) {
         text1 += " Once again I am CoffeeMeBot.:robot_face:";
         text1 += " Please order your Coffee :coffee:";
 
+        text1 = text1.toString();
+        
         webhookReply = {
             "slack": {
-                "text": "Hello Once again I am CoffeeMeBot.:robot_face:",
+                "text": text1,
                 "attachments": [
                     {
                         "text": "You can also choose from here..",
