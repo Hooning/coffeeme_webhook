@@ -7,16 +7,12 @@ app.set('port', (process.env.PORT || 5000))
 const REQUIRE_AUTH = true
 const AUTH_TOKEN = 'an-example-token'
 
+//export js files
+var userManage = require('./userManage');
+var serverValid = require('./serverValid');
+
 //make files
 var fs = require('fs');
-
-//blocking the stream
-//var readMe = fs.readFileSync('readMe.txt', 'utf8');
-//fs.readFile('readMe.txt', 'utf8', function(err,data){
-//    fs.writeFile('writeMe.txt', data);
-//});
-//console.log(readMe);
-//fs.writeFileSync('writeMe.txt', readMe);
 
 app.get('/', function (req, res) {
     res.send('Use the /webhook endpoint.')
@@ -30,45 +26,45 @@ app.post('/webhook', function (req, res) {
     // the payload is stored on req.body
     console.log("## req.body ##\n" + req.body)
 
-    // we have a simple authentication
-    if (REQUIRE_AUTH) {
-        if (req.headers['auth-token'] !== AUTH_TOKEN) {
-            return res.status(401).send('Unauthorized')
-        }
-    }
+    // Check authentication token
+    serverValid.authCheck(AUTH_TOKEN)
 
-    // and some validation too
-    if (!req.body || !req.body.result || !req.body.result.parameters) {
-        return res.status(400).send('Bad Request')
-    }
+    // Check request validation
+    serverValid.valCheck(req);
 
     // the value of Action from api.ai is stored in req.body.result.action
     console.log('* Received action -- %s', req.body.result.action)
 
     var actionName = req.body.result.action;
-    var userName = req.body.result.parameters['user-name'];    
-//    var webhookReply = {};
-    var text1 = "";
-    var text2 = "";
+    var userName = req.body.result.parameters['user-name']; 
+    var fileNm = userName + '.txt';
+    var userType = userManage.getUser(userName, fileNm);
+    
+    var greetings = "";
 
     if (actionName === "input.welcome" && userName !== "") {
         console.log("## input.welcome Action in with user-name ##")
         // parameters are stored in req.body.result.parameters
         
-        text1 += "Nice to meet you ";
-        text1 += userName.toString();
-        text1 += ":wave: \nOnce again I am CoffeeMeBot.:robot_face:\n";
-        text1 += "Please order your Coffee :coffee:";
-
-        text1 = text1.toString();
-          //webhookReply = text1;
+        if( userType === "newUser"){
+            greetings += "Nice to meet you ";
+            greetings += userName.toString();
+            greetings += ":wave: \nPlease order your Coffee :coffee:";    
+        }else{
+            greetings += "Welcome back ";
+            greetings += userName.toString();
+            greetings += ":sunglasses:\nWhich coffee is in your mind?"
+        }
+        
+        greetings = greetings.toString();
+          
         var webhookReply = 
             {
                 "slack": {
-                    "text": text1,
+                    "text": greetings,
                     "attachments": [
                         {
-                            "text": "You can also choose from here..",
+                            "text": "You can simply type \n or \nchoose from here..",
                             "fallback": "You are unable to choose a coffee",
                             "callback_id": "wopr_coffee",
                             "color": "#724f0c",
@@ -116,17 +112,21 @@ app.post('/webhook', function (req, res) {
                 }
             }
         
-    } else if (actionName === "input.coffeeorder") {
+    } else if (actionName === "input.orderdone") {
         var coffee = req.body.result.parameters['Coffee'];
         var size = req.body.result.parameters['Size'];
         var dairy = req.body.result.parameters['Dairy'];
         var hotOrIced = req.body.result.parameters['Hot-or-Ice'];
+        var deliveryTime = req.body.result.parameter['time']; 
 
-        if (coffee && size && hotOrIced) {
+        if (coffee && size && hotOrIced && deliveryTime) {
             var datetime = new Date();
-            var data = coffee + ',' + size + ',' + hotOrIced + ',' + dairy + ',' + datetime;
-            fs.writeFileSync('orderFile.txt', data);
-            console.log(fs.readFileSync('orderFile.txt', 'utf8'));
+            //Coffee|Size|HotorIced|Dairy|DeliverTime|OrderDateTime|
+            var data = coffee + ',' + size + ',' + hotOrIced + ',' + dairy + ',' + deliveryTime + ',' + datetime;
+            
+            //Create File
+            fs.writeFileSync(fileNm, data);
+            console.log(fs.readFileSync(fileNm, 'utf8'));
         }
     } else{
         console.log("## Action not catched!! ##");
