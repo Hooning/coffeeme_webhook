@@ -63,7 +63,7 @@ app.post('/webhook', function (req, res) {
         
         webhookReply = {
             "slack": {
-                "text": text1
+                "text": text1,
                 "attachments": [
                     {
                         "text": "You can also choose from here.. :coffee:",
