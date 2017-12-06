@@ -1,3 +1,5 @@
+const REQUIRE_AUTH = true
+
 //export js files
 module.exports = {
     authCheck: function(authToken){

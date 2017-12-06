@@ -4,7 +4,6 @@ const app = express()
 app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
 
-const REQUIRE_AUTH = true
 const AUTH_TOKEN = 'an-example-token'
 
 //export js files
@@ -38,7 +37,7 @@ app.post('/webhook', function (req, res) {
     var actionName = req.body.result.action;
     var userName = req.body.result.parameters['user-name']; 
     var fileNm = userName + '.txt';
-    var userType = userManage.getUser(userName, fileNm);
+    var userType = userManage.checkUser(userName, fileNm);
     
     var greetings = "";
 
