@@ -53,16 +53,16 @@ app.post('/webhook', function (req, res) {
     if (actionName === "input.welcome") {
         // parameters are stored in req.body.result.parameters
         var userName = req.body.result.parameters['user-name'];
-        text1 = ':wave: Nice to meet you ' + userName +
-            '\nOnce again I am CoffeeMeBot.:robot_face:' +
-            '\nPlease order your Coffee :coffee:';
+        text1 = ":wave: Nice to meet you " + userName +
+            "\nOnce again I am CoffeeMeBot.:robot_face:" +
+            "\nPlease order your Coffee :coffee:";
 
         webhookReply = {
             "slack": {
-                "text": text1,
+                "text": text1.toString(),
                 "attachments": [
                     {
-                        "text": "You can also choose from here..",
+                        "text": "You can also choose from here.. :coffee:",
                         "fallback": "You are unable to choose a coffee",
                         "callback_id": "wopr_coffee",
                         "color": "#724f0c",
