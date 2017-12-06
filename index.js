@@ -46,14 +46,15 @@ app.post('/webhook', function (req, res) {
     console.log('* Received action -- %s', req.body.result.action)
 
     var actionName = req.body.result.action;
+    var userName = req.body.result.parameters['user-name'];    
     var webhookReply = {};
     var text1 = "";
     var text2 = "";
 
-    if (actionName === "input.welcome") {
-        console.log("## input.welcome Action in ##")
+    if (actionName === "input.welcome" && userName !== null) {
+        console.log("## input.welcome Action in with user-name ##")
         // parameters are stored in req.body.result.parameters
-        var userName = req.body.result.parameters['user-name'];
+        
         text1 += "Nice to meet you ";
         text1 += userName.toString();
         text1 += ":wave: \nOnce again I am CoffeeMeBot.:robot_face:\n";
