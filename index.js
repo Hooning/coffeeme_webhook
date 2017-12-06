@@ -133,7 +133,7 @@ app.post('/webhook', function (req, res) {
     }
     
     var webhookReplyJSON = JSON.stringify(webhookReply);
-    webhookReplyJSON = JSON.stringify(eval('('+webhookReplyJSON+')'));
+    webhookReplyJSON = JSON.parse(webhookReplyJSON);
     
 
     // the most basic response
