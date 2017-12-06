@@ -9,6 +9,7 @@ const AUTH_TOKEN = 'an-example-token'
 //export js files
 var userManage = require('./userManage');
 var serverValid = require('./serverValid');
+var utilFunc = require('./utilFunction');
 
 //make files
 var fs = require('fs');
@@ -35,7 +36,7 @@ app.post('/webhook', function (req, res) {
     console.log('* Received action -- %s', req.body.result.action)
 
     var actionName = req.body.result.action;
-    var userName = 'David';
+    var userName = "David";
     var fileNm = userName + '.txt';
     var userType = userManage.checkUser(fileNm);
     
@@ -116,12 +117,21 @@ app.post('/webhook', function (req, res) {
         var size = req.body.result.parameters['Size'];
         var dairy = req.body.result.parameters['Dairy'];
         var hotOrIced = req.body.result.parameters['Hot-or-Ice'];
-        var deliveryTime = req.body.result.parameter['time']; 
+        var inputTime = req.body.result.parameter['time']; 
+        var today = new Date();
+        var deliveryTime = "";
+        
+        if( inputTime !== ""){
+            deliveryTime = utilFunc.getTime(today);    
+        }else{
+            deliveryTime = inputTime;
+        }
+        
         console.log("deliveryTime : " + deliveryTime)
         if (coffee && size && hotOrIced && deliveryTime) {
-            var datetime = new Date();
+            
             //Coffee|Size|HotorIced|Dairy|DeliverTime|OrderDateTime|
-            var data = coffee + ',' + size + ',' + hotOrIced + ',' + dairy + ',' + deliveryTime + ',' + datetime;
+            var data = coffee + ',' + size + ',' + hotOrIced + ',' + dairy + ',' + deliveryTime + ',' + today;
             
             //Create File
             fs.writeFileSync(fileNm, data);
