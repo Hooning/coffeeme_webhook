@@ -51,6 +51,7 @@ app.post('/webhook', function (req, res) {
     var text2 = "";
 
     if (actionName === "input.welcome") {
+        console.log("## input.welcome Action in ##")
         // parameters are stored in req.body.result.parameters
         var userName = req.body.result.parameters['user-name'];
         text1 += ":wave: Nice to meet you ";
