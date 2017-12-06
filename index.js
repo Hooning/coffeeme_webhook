@@ -132,16 +132,14 @@ app.post('/webhook', function (req, res) {
         console.log("## Action not catched!! ##");
     }
     
-    var webhookReplyJSON = JSON.stringify(webhookReply);
-    webhookReplyJSON = JSON.parse(webhookReplyJSON);
+    console.log("## webhookReply : %j", webhookReply);
     
-
     // the most basic response
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json({
         source: 'webhook',
-        speech: webhookReplyJSON,
-        displayText: webhookReplyJSON
+        speech: webhookReply,
+        displayText: webhookReply
     })
 })
 
