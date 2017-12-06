@@ -130,9 +130,11 @@ app.post('/webhook', function (req, res) {
             fs.writeFileSync('orderFile.txt', data);
             console.log(fs.readFileSync('orderFile.txt', 'utf8'));
         }
+    } else{
+        console.log("## Action not catched!! ##");
     }
 
-
+    console.log("## res webhookReply ##\n" + webhookReply );
     // the most basic response
     res.status(200).json({
         source: 'webhook',
