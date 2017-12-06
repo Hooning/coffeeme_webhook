@@ -12,8 +12,8 @@ var fs = require('fs');
 //export js files
 module.exports = {
     checkUser: function(userName, fileNm){
-        
-        if( fs.existSync(fileNm) ){
+       
+        if( fs.existsSync(fileNm) ){
             console.log("## Existing User");
             return "oldUser";
         }else{
