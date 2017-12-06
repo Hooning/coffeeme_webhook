@@ -28,7 +28,7 @@ app.get('/webhook', function (req, res) {
 app.post('/webhook', function (req, res) {
     // we expect to receive JSON data from api.ai here.
     // the payload is stored on req.body
-    // console.log(req.body)
+    console.log("## req.body ##\n" + req.body)
 
     // we have a simple authentication
     if (REQUIRE_AUTH) {
@@ -61,10 +61,9 @@ app.post('/webhook', function (req, res) {
 
         text1 = text1.toString();
         
-        webhookReply["slack"] = 
-//            {
-//                "slack": {
-              {
+        webhookReply = 
+            {
+                "slack": {
                     "text": text1,
                     "attachments": [
                         {
@@ -113,7 +112,7 @@ app.post('/webhook', function (req, res) {
                             ]   
                         }
                     ]
-//                }
+                }
             }
         
         console.log("## webhookReply ##");
@@ -138,7 +137,7 @@ app.post('/webhook', function (req, res) {
     res.status(200).json({
         source: 'webhook',
         speech: webhookReply,
-        displayText: JSON.stringify(webhookReply)
+        displayText: webhookReply
     })
 })
 
