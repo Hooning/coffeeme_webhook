@@ -124,24 +124,25 @@ app.post('/webhook', function (req, res) {
         if( inputTime === ""){
             deliveryTime = utilFunc.getTime(today);    
         }else{
+            console.log("## InputTime : " + inputTime);
             deliveryTime = inputTime;
         }
         
-        console.log("deliveryTime : " + deliveryTime)
+        
         if (coffee && size && hotOrIced && deliveryTime) {
-            
+            console.log("## Mandatory field success!");
             //Coffee|Size|HotorIced|Dairy|DeliverTime|OrderDateTime|
             var data = coffee + ',' + size + ',' + hotOrIced + ',' + dairy + ',' + deliveryTime + ',' + today;
             
             //Create File
             fs.writeFileSync(fileNm, data);
-            console.log("## FILE ["+fileNm+"]\n"+ fs.readFileSync(fileNm, 'utf8'));
+            console.log("## FILE ["+fileNm+"] has been made."); console.log("## Read File ##\n"+fs.readFileSync(fileNm, 'utf8'));
         }
     } else{
         console.log("## Action not catched!! ##");
     }
     
-    console.log("## webhookReply : %j", webhookReply);
+    //console.log("## webhookReply : %j", webhookReply);
     
     // the most basic response
     res.setHeader('Content-Type', 'application/json');
