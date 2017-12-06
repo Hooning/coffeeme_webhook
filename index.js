@@ -55,7 +55,7 @@ app.post('/webhook', function (req, res) {
         var userName = req.body.result.parameters['user-name'];
         text1 += ":wave: Nice to meet you ";
         text1 += userName.toString();
-        text1 += "\nOnce again I am CoffeeMeBot.:robot_face:" +
+        text1 += "\nOnce again I am CoffeeMeBot.:robot_face:";
         text1 += "\nPlease order your Coffee :coffee:";
 
         console.log("text1 : " + text1);
