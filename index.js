@@ -113,11 +113,11 @@ app.post('/webhook', function (req, res) {
             }
         
     } else if (actionName === "input.orderdone") {
-        var coffee = req.body.result.parameters['Coffee'];
-        var size = req.body.result.parameters['Size'];
-        var dairy = req.body.result.parameters['Dairy'];
-        var hotOrIced = req.body.result.parameters['Hot-or-Ice'];
-        var inputTime = req.body.result.parameters['time']; 
+        var coffee = req.body.result.contexts.parameters['Coffee'];
+        var size = req.body.result.contexts.parameters['Size'];
+        var dairy = req.body.result.contexts.parameters['Dairy'];
+        var hotOrIced = req.body.result.contexts.parameters['Hot-or-Ice'];
+        var inputTime = req.body.result.contexts.parameters['time']; 
         var today = new Date();
         var deliveryTime = "";
         
