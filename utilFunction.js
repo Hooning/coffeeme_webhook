@@ -174,6 +174,18 @@ module.exports = {
         var remainCnt = 0;
         var rowDataArr = dataList.split('\n');
         var validDataArr = [];
+        var webhookReply = {};
+        
+        var userName = "";
+        var orderDateTime = "";
+        var orderStatus = "";
+        var coffee = "";
+        var size = "";
+        var hotOrIced = "";
+        var dairy = "";
+        var deliveryTime = "";
+        var scheduleYn = "";
+        var price = "";
         
         //do not count last one
         var rowLength = rowDataArr.length-1;
@@ -182,26 +194,58 @@ module.exports = {
             
             var rowData = rowDataArr[i].split(",");
             //userName|orderDateTime|orderStatus|coffee|size|hotOrIced|dairy|deliveryTime|scheduleYn|price
-            var userName = rowData[0];
-            var orderDateTime = rowData[1];
-            var orderStatus = rowData[2];
-            var coffee = rowData[3];
-            var size = rowData[4];
-            var hotOrIced = rowData[5];
-            var dairy = rowData[6];
-            var deliveryTime = rowData[7];
-            var scheduleYn = rowData[8];
-            var price = rowData[9];
+            userName = rowData[0];
+            orderDateTime = rowData[1];
+            orderStatus = rowData[2];
+            coffee = rowData[3];
+            size = rowData[4];
+            hotOrIced = rowData[5];
+            dairy = rowData[6];
+            deliveryTime = rowData[7];
+            scheduleYn = rowData[8];
+            price = rowData[9];
+            
+            if( dairy !== ""){
+                if( coffee === "Caffe Americano" || coffee === "Brewed Coffee"){
+                   dairy = "";    
+                }else{
+                   dairy = "with normal milk";
+                }
+                
+            }else{
+                dairy = "with " + dairy;
+            }
+            
+            var h = deliveryTime.substring(0,2);
+            var m = deliveryTime.substring(2,4);
+            var s = deliveryTime.substring(4,6;
+                                           
+            var delvTime = h+":"+m+":"+s;
             
             if( orderStatus === "1"){
                 remainCnt++;
-                validDataArr = rowDataArr;
+                validDataArr = rowDataArr[i];
+                
+                webhookReply = {
+                    "slack": {
+                        "text": "Here is your order status..",
+                        "attachments": [
+                            {
+                                "text": "You have an order of "+size+" size \n" +hotOrIced+" "+coffee+dairy+"\nIt will be delivered around "+ delvTime,
+                                "fallback": "Something is wrong with time.",
+                                "callback_id": "wopr_time",
+                                "color": "#724f0c",
+                                "attachment_type": "default"
+                            }
+                        ]
+                    }
+                }
             }
         }
         console.log("##rowLength : " + rowLength);
         console.log("##remainCnt : " + remainCnt);
         console.log("##validDataArr : " + validDataArr);
                 
-        return price;
+        return webhookReply;
     },
 }
