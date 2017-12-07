@@ -8,7 +8,7 @@ function checkTime(i) {
 //export js files
 module.exports = {
     getTime: function(todate){
-        todate = todate.setMinutes(today.getMinutes() + 30);
+        todate = todate.setMinutes(todate.getMinutes() + 30);
         
         var h = todate.getHours();
         var m = todate.getMinutes();
