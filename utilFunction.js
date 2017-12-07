@@ -218,7 +218,7 @@ module.exports = {
             
             var h = deliveryTime.substring(0,2);
             var m = deliveryTime.substring(2,4);
-            var s = deliveryTime.substring(4,6;
+            var s = deliveryTime.substring(4,6);
                                            
             var delvTime = h+":"+m+":"+s;
             
