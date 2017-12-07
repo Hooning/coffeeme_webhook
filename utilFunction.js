@@ -399,13 +399,21 @@ module.exports = {
                 deliveryTime = rowData[7];
                 scheduleYn = rowData[8];
                 price = rowData[9];
-
+                
+                console.log("prev orderStatus : " + orderStatus);
+                
                 if (orderStatus === "1") {
                     var cancelStatus = "3";
                     
+                    console.log("cancelStatus : " + cancelStatus);
+                    
                     updatedLine =  userName+","+orderDateTime+","+cancelStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";
+                    
+                    console.log("change updatedLine : " + updatedLine);
                 }else{
-                    updatedLine =  userName+","+orderDateTime+","+orderStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";  
+                    updatedLine =  userName+","+orderDateTime+","+orderStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";
+                    
+                    console.log("same updatedLine : " + updatedLine
                 }
                 
                 
