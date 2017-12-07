@@ -277,9 +277,10 @@ module.exports = {
                         s = checkTime(s).toString();
 
                         var curTime = h + m + s;
-
+                        
+                        console.log("## Remain time " + Integer.parseInt(inputTime) - Integer.parseInt(curTime) ;
+                        
                         if (inputTime - curTime < 10) {
-                            console.log("## Remain time " + inputTime - curTime);
                             cancelBool = false;
                         } else {
                             cancelBool = true;
