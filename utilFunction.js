@@ -84,31 +84,6 @@ module.exports = {
             }
 
         },
-        cancelTime: function (inputTime) {
-            console.log("## cancel_inputTime : " + inputTime);
-
-            var todate = new Date();
-
-            var h = todate.getHours();
-            var m = todate.getMinutes();
-            var s = todate.getSeconds();
-
-            h = checkTime(h).toString();
-            m = checkTime(m).toString();
-            s = checkTime(s).toString();
-
-            var curTime = h + m + s;
-
-
-
-            if (inputTime - curTime < 10) {
-                console.log("## Remain time " + inputTime - curTime);
-                return false;
-            } else {
-                return true;
-            }
-
-        },
         getPrice: function (coffee, size) {
             var price = 0.00;
 
@@ -285,7 +260,32 @@ module.exports = {
                         }
                         //if there is something to cancel
                     } else {
-                        if ( utilFunc.cancelTime(deliveryTime) ) {
+                        if ( function(deliveryTime){
+                                var inputTime = deliveryTime;
+                                console.log("## cancel_inputTime : " + inputTime);
+
+                                var todate = new Date();
+
+                                var h = todate.getHours();
+                                var m = todate.getMinutes();
+                                var s = todate.getSeconds();
+
+                                h = checkTime(h).toString();
+                                m = checkTime(m).toString();
+                                s = checkTime(s).toString();
+
+                                var curTime = h + m + s;
+
+
+
+                                if (inputTime - curTime < 10) {
+                                    console.log("## Remain time " + inputTime - curTime);
+                                    return false;
+                                } else {
+                                    return true;
+                                }
+
+                        }) {
                             webhookReply = {
                                 "slack": {
                                     "text": "",
