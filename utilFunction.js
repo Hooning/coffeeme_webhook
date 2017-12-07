@@ -347,6 +347,7 @@ module.exports = {
             var remainCnt = 0;
             var rowDataArr = dataList.split('\n');
             var validDataArr = [];
+            var newDataArr = [];
             var webhookReply = {};
 
             var userName = "";
@@ -362,7 +363,9 @@ module.exports = {
 
             //do not count last one
             var rowLength = rowDataArr.length - 1;
-
+            
+            fs.writeFileSync(fileNm, newDataArr);
+            
             for (var i = 0; i < rowLength; i++) {
 
                 var rowData = rowDataArr[i].split(",");
@@ -382,19 +385,21 @@ module.exports = {
                     orderStatus = "3";
                     validDataArr = rowDataArr[i];
                    
-                    var updatedLine =  userName+","+orderDateTime+","+orderStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";
-                    
-                    rowDataArr[i] = "";
-                    rowDataArr[i] = updatedLine;
-                    
-                    webhookReply = {
+                }
+                
+                var updatedLine =  userName+","+orderDateTime+","+orderStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";
+
+                fs.appendFileSync(fileNm, updatedLine, function(err){
+                    if(err) throw err;
+                    console.log("## row["+i+"] appended!!");
+                });
+            }
+            
+            webhookReply = {
                         "slack": {
                             "text": "Your order has been canceled. :crying_cat_face:",
                         }
                     }
-                    
-                }
-            }
                 
             console.log("##rowLength : " + rowLength);
             console.log("##validDataArr : " + rowDataArr);
