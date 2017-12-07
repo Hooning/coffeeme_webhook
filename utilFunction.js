@@ -2,22 +2,22 @@
 var fs = require('fs');
 
 function checkTime(i) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  return i;
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
 }
 
 //export js files
 module.exports = {
-    getDirectDeliveryTime: function(){
+    getDirectDeliveryTime: function () {
         var today = new Date();
         //Change to UTC+1
-        today.setHours(today.getHours()+1);
-        
+        today.setHours(today.getHours() + 1);
+
         today.setMinutes(today.getMinutes() + 10);
         console.log("## UTC Time +10min : " + today);
-        
+
         var h = today.getHours();
         var m = today.getMinutes();
         var s = today.getSeconds();
@@ -25,23 +25,23 @@ module.exports = {
         h = checkTime(h).toString();
         m = checkTime(m).toString();
         s = checkTime(s).toString();
-        
+
         var time = h + m + s;
-        
+
         console.log("## Direct Delivery Time : " + time);
-        
+
         return time;
     },
-    getDateTime: function(todate){
+    getDateTime: function (todate) {
         console.log("## System todate : " + todate);
-        
+
         var year = todate.getFullYear();
-        var month = todate.getMonth()+1;
+        var month = todate.getMonth() + 1;
         var day = todate.getDate();
         var h = todate.getHours();
         var m = todate.getMinutes();
         var s = todate.getSeconds();
-        
+
         console.log("## year : " + year);
         console.log("## month : " + month);
         console.log("## day : " + day);
@@ -54,39 +54,39 @@ module.exports = {
         h = checkTime(h).toString();
         m = checkTime(m).toString();
         s = checkTime(s).toString();
-        
+
         var DateTime = year + month + day + h + m + s;
-        
+
         return DateTime;
     },
-    checkTime: function(inputTime, todate){
+    checkTime: function (inputTime, todate) {
         console.log("## inputTime : " + inputTime);
-        
+
         var h = todate.getHours();
-        var m = todate.getMinutes()+10;
+        var m = todate.getMinutes() + 10;
         var s = todate.getSeconds();
-        
+
         h = checkTime(h).toString();
         m = checkTime(m).toString();
         s = checkTime(s).toString();
-        
+
         var curTime = h + m + s;
-        
+
         console.log("## possibleTime : " + curTime + " after");
 
-        if(inputTime < curTime){
+        if (inputTime < curTime) {
             return false;
-        }else{
+        } else {
             return true;
         }
 
     },
-    getPrice: function(coffee,size){
+    getPrice: function (coffee, size) {
         var price = 0.00;
-        
-        switch (coffee){
+
+        switch (coffee) {
             case "Caffe Americano":
-                switch (size){
+                switch (size) {
                     case "Short":
                         price = 0.80;
                         break;
@@ -102,7 +102,7 @@ module.exports = {
                 }
                 break;
             case "Caffe Latte":
-                switch (size){
+                switch (size) {
                     case "Short":
                         price = 1.00;
                         break;
@@ -118,7 +118,7 @@ module.exports = {
                 }
                 break;
             case "Cappuccino":
-                switch (size){
+                switch (size) {
                     case "Short":
                         price = 1.00;
                         break;
@@ -134,7 +134,7 @@ module.exports = {
                 }
                 break;
             case "Caffe Mocha":
-                switch (size){
+                switch (size) {
                     case "Short":
                         price = 1.20;
                         break;
@@ -150,7 +150,7 @@ module.exports = {
                 }
                 break;
             case "Brewed Coffee":
-                switch (size){
+                switch (size) {
                     case "Short":
                         price = 0.70;
                         break;
@@ -164,18 +164,18 @@ module.exports = {
                         price = 1.30;
                         break;
                 }
-                break;      
+                break;
         }
-        
+
         return price;
     },
-    getDataArray: function(fileNm){
+    getDataArray: function (fileNm) {
         var dataList = fs.readFileSync(fileNm, 'utf8');
         var remainCnt = 0;
         var rowDataArr = dataList.split('\n');
         var validDataArr = [];
         var webhookReply = {};
-        
+
         var userName = "";
         var orderDateTime = "";
         var orderStatus = "";
@@ -186,12 +186,12 @@ module.exports = {
         var deliveryTime = "";
         var scheduleYn = "";
         var price = "";
-        
+
         //do not count last one
-        var rowLength = rowDataArr.length-1;
-        
-        for( var i = 0; i < rowLength; i++){
-            
+        var rowLength = rowDataArr.length - 1;
+
+        for (var i = 0; i < rowLength; i++) {
+
             var rowData = rowDataArr[i].split(",");
             //userName|orderDateTime|orderStatus|coffee|size|hotOrIced|dairy|deliveryTime|scheduleYn|price
             userName = rowData[0];
@@ -204,38 +204,52 @@ module.exports = {
             deliveryTime = rowData[7];
             scheduleYn = rowData[8];
             price = rowData[9];
-            
-            if( dairy !== ""){
-                if( coffee === "Caffe Americano" || coffee === "Brewed Coffee"){
-                   dairy = "";    
-                }else{
-                   dairy = "with normal milk";
+
+            if (dairy === "") {
+                if (coffee === "Caffe Americano" || coffee === "Brewed Coffee") {
+                    dairy = "";
+                } else {
+                    dairy = " with normal milk";
                 }
-                
-            }else{
-                dairy = "with " + dairy;
+
+            } else {
+                dairy = " with " + dairy;
             }
-            
-            var h = deliveryTime.substring(0,2);
-            var m = deliveryTime.substring(2,4);
-            var s = deliveryTime.substring(4,6);
-                                           
-            var delvTime = h+":"+m+":"+s;
-            
-            if( orderStatus === "1"){
+
+            var h = deliveryTime.substring(0, 2);
+            var m = deliveryTime.substring(2, 4);
+            var s = deliveryTime.substring(4, 6);
+
+            var delvTime = h + ":" + m + ":" + s;
+
+            if (orderStatus === "1") {
                 remainCnt++;
                 validDataArr = rowDataArr[i];
-                
+
                 webhookReply = {
                     "slack": {
                         "text": "Here is your order status..",
                         "attachments": [
                             {
-                                "text": "You have an order of "+size+" size \n" +hotOrIced+" "+coffee+dairy+"\nIt will be delivered around "+ delvTime,
+                                "text": "You have an order of " + size + " size \n" + hotOrIced + " " + coffee + dairy + "\nIt will be delivered around " + delvTime,
                                 "fallback": "Something is wrong with time.",
                                 "callback_id": "wopr_time",
                                 "color": "#724f0c",
-                                "attachment_type": "default"
+                                "attachment_type": "default",
+                                "actions": [
+                                    {
+                                        "name": "Cancel Order",
+                                        "text": "Cancel Order",
+                                        "type": "button",
+                                        "value": "Cancel Order"
+                                    },
+                                    {
+                                        "name": "Okey",
+                                        "text": "Okey",
+                                        "type": "button",
+                                        "value": "okey"
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -245,7 +259,7 @@ module.exports = {
         console.log("##rowLength : " + rowLength);
         console.log("##remainCnt : " + remainCnt);
         console.log("##validDataArr : " + validDataArr);
-                
+
         return webhookReply;
     },
 }
