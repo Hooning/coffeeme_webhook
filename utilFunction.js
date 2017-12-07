@@ -33,8 +33,8 @@ module.exports = {
         console.log("## System todate : " + todate);
         
         var year = todate.getFullYear();
-        var month = todate.getMonth();
-        var day = todate.getDay();
+        var month = todate.getMonth()+1;
+        var day = todate.getDate();
         var h = todate.getHours();
         var m = todate.getMinutes();
         var s = todate.getSeconds();
