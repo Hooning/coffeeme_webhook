@@ -265,6 +265,7 @@ module.exports = {
                                 console.log("## cancel_inputTime : " + inputTime);
 
                                 var todate = new Date();
+                                todate.setHours(todate.getHours() + 1);
 
                                 var h = todate.getHours();
                                 var m = todate.getMinutes();
@@ -275,8 +276,6 @@ module.exports = {
                                 s = checkTime(s).toString();
 
                                 var curTime = h + m + s;
-
-
 
                                 if (inputTime - curTime < 10) {
                                     console.log("## Remain time " + inputTime - curTime);
@@ -346,7 +345,7 @@ module.exports = {
                     "text": "",
                     "attachments": [
                       {
-                        "text": "Currently, there is no order to be cancelled. :joy:\nFirst, make your coffee :coffee: order.",
+                        "text": "Currently, there is no order to be delivered. :cold_sweat:\nFirst, make your coffee :coffee: order.",
                         "fallback": "Something is wrong with cancel.",
                         "callback_id": "wopr_cancel",
                         "color": "#b72110",
