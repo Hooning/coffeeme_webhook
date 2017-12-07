@@ -57,7 +57,7 @@ module.exports = {
         return DateTime;
     },
     checkTime: function(inputTime, todate){
-        var inTime = inputTime.replace(":","");
+        var inTime = inputTime.replace(":","").replace(":","");
         console.log("## inTime : " + inTime);
         
         var h = todate.getHours();
@@ -72,7 +72,7 @@ module.exports = {
         
         console.log("## curTime : " + curTime);
 
-        if(intTime < curTime){
+        if(inTime < curTime){
             return false;
         }else{
             return true;
