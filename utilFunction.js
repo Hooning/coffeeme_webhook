@@ -173,7 +173,11 @@ module.exports = {
     getDataArray: function(fileNm){
         var dataList = fs.readFileSync(fileNm, 'utf8');
         
-        var arr = dataList.length;
+        var rowDate = dataList.split('\n');
+        
+        var rowLength = rowDate.length;
+        
+        console.log("##rowLength : " + rowLength)
                 
         return price;
     },

@@ -183,21 +183,21 @@ app.post('/webhook', function (req, res) {
 
             //Create File
             if(userType === 'newUser'){
-                fs.writeFileSync(fileNm, data);    
+                fs.writeFileSync(fileNm, data);
+                console.log("## FILE [" + fileNm + "] has been made.");
             }else{
                 fs.appendFileSync(fileNm, data, function(err){
                     if(err) throw err;
                     console.log("## "+fileNm+" Updated!!");
                 });
             }
-            
-            console.log("## FILE [" + fileNm + "] has been made.");
+                        
             console.log("## Read File ##\n" + fs.readFileSync(fileNm, 'utf8'));
         }
     } else if(actionName === "input.orderstatus" && userName !== "" && userType ==="oldUser"){
         console.log("## input.orderstatus Action with user-name ##");
         //set split string to array
-        
+        utilFunc.getDataArray(fileNm);
                
         
     }else {
