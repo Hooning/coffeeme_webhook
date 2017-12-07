@@ -8,14 +8,12 @@ function checkTime(i) {
 //export js files
 module.exports = {
     getTime: function(todate){
-        var date = new Date(todate);
+        todate.setMinutes(todate.getMinutes() + 30);
+        console.log("## UTC Time +30min : " + todate);
         
-        date = date.setMinutes(date.getMinutes() + 30);
-        console.log("## UTC Time +30min : " + date);
-        
-        var h = date.getHours();
-        var m = date.getMinutes();
-        var s = date.getSeconds();
+        var h = todate.getHours();
+        var m = todate.getMinutes();
+        var s = todate.getSeconds();
 
         h = checkTime(h).toString();
         m = checkTime(m).toString();
@@ -28,16 +26,14 @@ module.exports = {
         return time;
     },
     getDateTime: function(todate){
-        var date = new Date(todate);
+        console.log("## System todate : " + todate);
         
-        console.log("## System todate : " + date);
-        
-        var year = date.getFullYear().toString();
-        var month = date.getMonth().toString();
-        var day = date.getDay().toString();
-        var h = date.getHours().toString();
-        var m = date.getMinutes().toString();
-        var s = date.getSeconds().toString();
+        var year = todate.getFullYear().toString();
+        var month = todate.getMonth().toString();
+        var day = todate.getDay().toString();
+        var h = todate.getHours().toString();
+        var m = todate.getMinutes().toString();
+        var s = todate.getSeconds().toString();
         
         console.log("## year : " + year);
         console.log("## month : " + month);
