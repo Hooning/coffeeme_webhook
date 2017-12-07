@@ -121,6 +121,8 @@ app.post('/webhook', function (req, res) {
         
         today = today.toUTCString();
         
+        console.log("## UTC Time : " + today);
+        
         var deliveryTime = "";
         var orderDateTime = "";
         //[1]: in order, [2]: ordered, [3]: canceled 

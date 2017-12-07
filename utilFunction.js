@@ -8,11 +8,11 @@ function checkTime(i) {
 //export js files
 module.exports = {
     getTime: function(todate){
-        todate = todate.setMinutes(todate.getMinutes() + 30);
+        todate = todate.setUTCMinutes(todate.getUTCMinutes() + 30);
         
-        var h = todate.getHours();
-        var m = todate.getMinutes();
-        var s = todate.getSeconds();
+        var h = todate.getUTCHours();
+        var m = todate.getUTCMinutes();
+        var s = todate.getUTCSeconds();
 
         h = checkTime(h).toString();
         m = checkTime(m).toString();
@@ -27,12 +27,12 @@ module.exports = {
     getDateTime: function(todate){
         console.log("## System todate : " + todate);
         
-        var year = todate.getFullYear().toString();
-        var month = todate.getMonth().toString();
-        var day = todate.getDay().toString();
-        var h = todate.getHours().toString();
-        var m = todate.getMinutes().toString();
-        var s = todate.getSeconds().toString();
+        var year = todate.getFullYear.toString();
+        var month = todate.getUTCMonth().toString();
+        var day = todate.getUTCDay().toString();
+        var h = todate.getUTCHours().toString();
+        var m = todate.getUTCMinutes().toString();
+        var s = todate.getUTCSeconds().toString();
         
         console.log("## year : " + year);
         console.log("## month : " + month);
