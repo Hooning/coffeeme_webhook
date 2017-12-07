@@ -10,13 +10,15 @@ module.exports = {
     getTime: function(todate){
         todate = todate.setMinutes(todate.getMinutes() + 30);
         
-        var h = todate.getHours().toString();
-        var m = todate.getMinutes().toString();
-        var s = todate.getSeconds().toString();
+        console.log("## UTC Time +30min : " + todate);
+        
+        var h = todate.getHours();
+        var m = todate.getMinutes();
+        var s = todate.getSeconds();
 
-        h = checkTime(h).toString().toString();
-        m = checkTime(m).toString().toString();
-        s = checkTime(s).toString().toString();
+        h = checkTime(h).toString();
+        m = checkTime(m).toString();
+        s = checkTime(s).toString();
         
         var time = h + m + s;
         
