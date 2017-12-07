@@ -1,108 +1,146 @@
 {
-    "text": "CoffeeMeBot :robot_face: \n*[Coffee Menu]* :coffee: ",
-    "attachments": [{
-            "fallback": "Required plain-text summary of the attachment.",
-            "color": "#36a64f",
-            "text": "Caffe Americano :americano:",
-            "actions": [{
-                "name": "short",
-                "text": "Short - € 0.80",
-                "type": "button",
-                "value": "Americano Short  € 0.80"
-            }, {
-                "name": "tall",
-                "text": "Tall - € 1.00",
-                "type": "button",
-                "value": "Americano Tall € 1.00"
-            }, {
-                "name": "grande",
-                "text": "Grande - € 1.20",
-                "type": "button",
-                "value": "Americano Grande € 1.20"
-            }, {
-                "name": "venti",
-                "text": "Venti - € 1.40",
-                "type": "button",
-                "value": "Americano Venti € 1.40"
-            }]
-        },
-        {
-            "fallback": "Required plain-text summary of the attachment.",
-            "color": "#36a64f",
-            "text": "Caffe Latte :latte:",
-            "actions": [{
-                "name": "short",
-                "text": "Short - € 1.00",
-                "type": "button",
-                "value": "Latte Short  € 1.00"
-            }, {
-                "name": "tall",
-                "text": "Tall - € 1.20",
-                "type": "button",
-                "value": "Latte Tall € 1.20"
-            }, {
-                "name": "grande",
-                "text": "Grande - € 1.40",
-                "type": "button",
-                "value": "Latte Grande € 1.40"
-            }, {
-                "name": "venti",
-                "text": "Venti - € 1.60",
-                "type": "button",
-                "value": "Latte Venti € 1.60"
-            }]
-        },
-        {
-            "fallback": "Required plain-text summary of the attachment.",
-            "color": "#36a64f",
-            "text": "Caffe Mocha :mocha:",
-            "actions": [{
-                "name": "short",
-                "text": "Short - € 1.00",
-                "type": "button",
-                "value": "Mocha Short  € 1.00"
-            }, {
-                "name": "tall",
-                "text": "Tall - € 1.20",
-                "type": "button",
-                "value": "Mocha Tall € 1.20"
-            }, {
-                "name": "grande",
-                "text": "Grande - € 1.40",
-                "type": "button",
-                "value": "Mocha Grande € 1.40"
-            }, {
-                "name": "venti",
-                "text": "Venti - € 1.60",
-                "type": "button",
-                "value": "Mocha Venti € 1.60"
-            }]
-        },
-        {
-            "fallback": "Required plain-text summary of the attachment.",
-            "color": "#36a64f",
-            "text": "Brewed Coffee :brewed:",
-            "actions": [{
-                "name": "short",
-                "text": "Short - € 0.70",
-                "type": "button",
-                "value": "Brewed Coffee Short  € 0.70"
-            }, {
-                "name": "tall",
-                "text": "Tall - € 0.90",
-                "type": "button",
-                "value": "Brewed Coffee Tall € 0.90"
-            }, {
-                "name": "grande",
-                "text": "Grande - € 1.10",
-                "type": "button",
-                "value": "Brewed Coffee Grande € 1.10"
-            }, {
-                "name": "venti",
-                "text": "Venti - € 1.30",
-                "type": "button",
-                "value": "Brewed Coffee Venti € 1.30"
-            }]
-        }
-    ]
+    "slack": {
+	    "text": "CoffeeMeBot :robot_face: \n*[Coffee Menu]* :coffee: ",
+	    "attachments": [{
+	            "fallback": "Required plain-text summary of the attachment.",
+	            "callback_id": "wopr_menu",
+	            "color": "#724f0c",
+	            "attachment_type": "default",
+	            "text": "Caffe Americano :americano:",
+	            "actions": [{
+	                "name": "short",
+	                "text": "Short - € 0.80",
+	                "type": "button",
+	                "value": "Order Americano Short € 0.80"
+	            }, {
+	                "name": "tall",
+	                "text": "Tall - € 1.00",
+	                "type": "button",
+	                "value": "Order Americano Tall € 1.00"
+	            }, {
+	                "name": "grande",
+	                "text": "Grande - € 1.20",
+	                "type": "button",
+	                "value": "Order Americano Grande € 1.20"
+	            }, {
+	                "name": "venti",
+	                "text": "Venti - € 1.40",
+	                "type": "button",
+	                "value": "Order Americano Venti € 1.40"
+	            }]
+	        },
+	        {
+	            "fallback": "Required plain-text summary of the attachment.",
+	            "callback_id": "wopr_menu",
+	            "color": "#724f0c",
+	            "attachment_type": "default",
+	            "text": "Caffe Latte :latte:",
+	            "actions": [{
+	                "name": "short",
+	                "text": "Short - € 1.00",
+	                "type": "button",
+	                "value": "Order Latte Short € 1.00"
+	            }, {
+	                "name": "tall",
+	                "text": "Tall - € 1.20",
+	                "type": "button",
+	                "value": "Order Latte Tall € 1.20"
+	            }, {
+	                "name": "grande",
+	                "text": "Grande - € 1.40",
+	                "type": "button",
+	                "value": "Order Latte Grande € 1.40"
+	            }, {
+	                "name": "venti",
+	                "text": "Venti - € 1.60",
+	                "type": "button",
+	                "value": "Order Latte Venti € 1.60"
+	            }]
+	        },
+	        {
+	            "fallback": "Required plain-text summary of the attachment.",
+	            "callback_id": "wopr_menu",
+	            "color": "#724f0c",
+	            "attachment_type": "default",
+	            "text": "Cappuccino :cappuccino:",
+	            "actions": [{
+	                "name": "short",
+	                "text": "Short - € 1.00",
+	                "type": "button",
+	                "value": "Order Cappuccino Short € 1.00"
+	            }, {
+	                "name": "tall",
+	                "text": "Tall - € 1.20",
+	                "type": "button",
+	                "value": "Order Cappuccino Tall € 1.20"
+	            }, {
+	                "name": "grande",
+	                "text": "Grande - € 1.40",
+	                "type": "button",
+	                "value": "Order Cappuccino Grande € 1.40"
+	            }, {
+	                "name": "venti",
+	                "text": "Venti - € 1.60",
+	                "type": "button",
+	                "value": "Order Cappuccino Venti € 1.60"
+	            }]
+	        },
+	        {
+	            "fallback": "Required plain-text summary of the attachment.",
+	            "callback_id": "wopr_menu",
+	            "color": "#724f0c",
+	            "attachment_type": "default",
+	            "text": "Caffe Mocha :mocha:",
+	            "actions": [{
+	                "name": "short",
+	                "text": "Short - € 1.20",
+	                "type": "button",
+	                "value": "Order Mocha Short € 1.20"
+	            }, {
+	                "name": "tall",
+	                "text": "Tall - € 1.40",
+	                "type": "button",
+	                "value": "Order Mocha Tall € 1.40"
+	            }, {
+	                "name": "grande",
+	                "text": "Grande - € 1.60",
+	                "type": "button",
+	                "value": "Order Mocha Grande € 1.60"
+	            }, {
+	                "name": "venti",
+	                "text": "Venti - € 1.80",
+	                "type": "button",
+	                "value": "Order Mocha Venti € 1.80"
+	            }]
+	        },
+	        {
+	            "fallback": "Required plain-text summary of the attachment.",
+	            "callback_id": "wopr_menu",
+	            "color": "#724f0c",
+	            "attachment_type": "default",
+	            "text": "Brewed Coffee :brewed:",
+	            "actions": [{
+	                "name": "short",
+	                "text": "Short - € 0.70",
+	                "type": "button",
+	                "value": "Order Brewed Coffee Short € 0.70"
+	            }, {
+	                "name": "tall",
+	                "text": "Tall - € 0.90",
+	                "type": "button",
+	                "value": "Order Brewed Coffee Tall € 0.90"
+	            }, {
+	                "name": "grande",
+	                "text": "Grande - € 1.10",
+	                "type": "button",
+	                "value": "Order Brewed Coffee Grande € 1.10"
+	            }, {
+	                "name": "venti",
+	                "text": "Venti - € 1.30",
+	                "type": "button",
+	                "value": "Order Brewed Coffee Venti € 1.30"
+	            }]
+	        }
+	    ]
+	}
 }

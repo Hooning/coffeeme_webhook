@@ -1,0 +1,56 @@
+{
+    "slack": {
+	    "text": "CoffeeMeBot :robot_face: \n*[Coffee Menu]* :coffee: ",
+	    "attachments": [{
+	            "fallback": "Required plain-text summary of the attachment.",
+	            "callback_id": "wopr_menu",
+	            "color": "#724f0c",
+	            "attachment_type": "default",
+	            "text": "Caffe Americano :americano:\nShort - € 0.80   Tall - € 1.00   Grande - € 1.20   Venti - € 1.40"
+	        },
+	        {
+	            "fallback": "Required plain-text summary of the attachment.",
+	            "callback_id": "wopr_menu",
+	            "color": "#724f0c",
+	            "attachment_type": "default",
+	            "text": "Caffe Latte :latte:\nShort - € 1.00   Tall - € 1.20   Grande - € 1.40   Venti - € 1.60"
+	        },
+	        {
+	            "fallback": "Required plain-text summary of the attachment.",
+	            "callback_id": "wopr_menu",
+	            "color": "#724f0c",
+	            "attachment_type": "default",
+	            "text": "Cappuccino :cappuccino:\nShort - € 1.00   Tall - € 1.20   Grande - € 1.40   Venti - € 1.60"	            
+	        },
+	        {
+	            "fallback": "Required plain-text summary of the attachment.",
+	            "callback_id": "wopr_menu",
+	            "color": "#724f0c",
+	            "attachment_type": "default",
+	            "text": "Caffe Mocha :mocha:\nShort - € 1.20   Tall - € 1.40   Grande - € 1.60   Venti - € 1.80"
+	        },
+	        {
+	            "fallback": "Required plain-text summary of the attachment.",
+	            "callback_id": "wopr_menu",
+	            "color": "#724f0c",
+	            "attachment_type": "default",
+	            "text": "Brewed Coffee :brewed:\nShort - € 0.70   Tall - € 0.90   Grande - € 1.10   Venti - € 1.30"
+	        },
+	        {
+	            "fallback": "Required plain-text summary of the attachment.",
+	            "callback_id": "wopr_menu",
+	            "color": "#8ce88b",
+	            "attachment_type": "default",
+	            "pretext": "If you want to make an order, \nSimply type or click the order button.",
+	            "actions": [
+			          {
+			            "name": "Order",
+			            "text": "Order",
+			            "type": "button",
+			            "value": "Order"
+			          }
+			      ]
+	        }
+	    ]
+	}
+}

@@ -111,44 +111,49 @@ app.post('/webhook', function (req, res) {
             }
         }
 
-    } else if (actionName === "input.orderfrommenu") {
-        var coffee = req.body.result.contexts[0].parameters['Coffee'];
-        var size = req.body.result.contexts[0].parameters['Size'];
-        var price = req.body.result.contexts[0].parameters['price'];
+    } else if (actionName === "input.orderdone") {
+        var coffee = req.body.result.contexts[1].parameters['Coffee'];
+        var size = req.body.result.contexts[1].parameters['Size'];
+        var dairy = req.body.result.contexts[1].parameters['Dairy'];
+        var hotOrIced = req.body.result.contexts[1].parameters['Hot-or-Ice'];
+        var inputTime = req.body.result.contexts[1].parameters['time'];
+        var today = new Date();
+        
+        var deliveryTime = "";
+        var orderDateTime = "";
+        //[1]: in order, [2]: ordered, [3]: canceled 
+        var orderStatus = "1"; //new order set
+        var scheduleYn = "N";
         
         console.log("## coffee : " + coffee);
         console.log("## size : " + size);
+        
+        var price = utilFunc.getPrice(coffee,size);
+
         console.log("## price : " + price);
         
-        res.body.result.contexts[1].parameters['Coffee'] = coffee;
-        res.body.result.contexts[1].parameters['Size'] = size;
-        res.body.result.contexts[1].parameters['price'] = price;
-        
-    }else if (actionName === "input.orderdone") {
-        var coffee = req.body.result.contexts[0].parameters['Coffee'];
-        var size = req.body.result.contexts[0].parameters['Size'];
-        var dairy = req.body.result.contexts[0].parameters['Dairy'];
-        var hotOrIced = req.body.result.contexts[0].parameters['Hot-or-Ice'];
-        var inputTime = req.body.result.contexts[0].parameters['time'];
-        var today = new Date();
-        var deliveryTime = "";
-
         if (inputTime === "") {
+            scheduleYn = "N";
             deliveryTime = utilFunc.getTime(today);
         } else {
             console.log("## InputTime : " + inputTime);
+            scheduleYn = "Y";
             deliveryTime = inputTime;
         }
+        
+        orderDateTime = utilFunc.getDateTime(today);
 
-        console.log("## coffee : " + coffee);
-        console.log("## size : " + size);
-        console.log("## hotOrIced : " + hotOrIced);
-        console.log("## deliveryTime : " + deliveryTime);
+        console.log("## input_orderDateTime : " + orderDateTime);
+        console.log("## input_orderStatus : " + orderStatus);
+        console.log("## input_hotOrIced : " + hotOrIced);
+        console.log("## input_dairy : " + dairy);
+        console.log("## input_scheduleYn : " + scheduleYn);
+        console.log("## input_deliveryTime : " + deliveryTime);
 
-        if (coffee && size && hotOrIced && deliveryTime) {
+        if (coffee && size && hotOrIced && orderDateTime && deliveryTime) {
             console.log("## Mandatory field success!");
             //Coffee|Size|HotorIced|Dairy|DeliverTime|OrderDateTime|
-            var data = coffee + ',' + size + ',' + hotOrIced + ',' + dairy + ',' + deliveryTime + ',' + today;
+            var data = userName + ',' + orderDateTime + ',' + orderStatus+ ',' + coffee + ',' + size + ',' + hotOrIced + ',' + dairy + ',' + deliveryTime + ',' + scheduleYn + ',' + price;
 
             //Create File
             fs.writeFileSync(fileNm, data);
