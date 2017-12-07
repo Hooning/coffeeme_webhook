@@ -331,10 +331,12 @@ module.exports = {
 
                     }
                 }
-                console.log("##rowLength : " + rowLength);
-                console.log("##remainCnt : " + remainCnt);
-                console.log("##validDataArr : " + validDataArr);
+                
+            }
+            console.log("##rowLength : " + rowLength);
+            console.log("##remainCnt : " + remainCnt);
+            console.log("##validDataArr : " + validDataArr);
 
-                return webhookReply;
-            },
+            return webhookReply;
         }
+}
