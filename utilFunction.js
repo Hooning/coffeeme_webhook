@@ -1,6 +1,9 @@
 //make files
 var fs = require('fs');
 
+//export js files
+var utilFunc = require('./utilFunction');
+
 function checkTime(i) {
     if (i < 10) {
         i = "0" + i;
@@ -282,7 +285,7 @@ module.exports = {
                         }
                         //if there is something to cancel
                     } else {
-                        if (cancelTime(deliveryTime)) {
+                        if ( utilFunc.cancelTime(deliveryTime) ) {
                             webhookReply = {
                                 "slack": {
                                     "text": "",
