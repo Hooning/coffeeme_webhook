@@ -12,8 +12,8 @@ module.exports = {
         //Change to UTC+1
         today.setHours(today.getHours()+1);
         
-        today.setMinutes(today.getMinutes() + 30);
-        console.log("## UTC Time +30min : " + today);
+        today.setMinutes(today.getMinutes() + 10);
+        console.log("## UTC Time +10min : " + today);
         
         var h = today.getHours();
         var m = today.getMinutes();
@@ -55,6 +55,29 @@ module.exports = {
         var DateTime = year + month + day + h + m + s;
         
         return DateTime;
+    },
+    checkTime: function(inputTime, todate){
+        var inTime = inputTime.replace(":","");
+        console.log("## inTime : " + inTime);
+        
+        var h = todate.getHours();
+        var m = todate.getMinutes()+10;
+        var s = todate.getSeconds();
+        
+        h = checkTime(h).toString();
+        m = checkTime(m).toString();
+        s = checkTime(s).toString();
+        
+        var curTime = h + m + s;
+        
+        console.log("## curTime : " + curTime);
+
+        if(intTime < curTime){
+            return false;
+        }else{
+            return true;
+        }
+
     },
     getPrice: function(coffee,size){
         var price = 0.00;

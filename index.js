@@ -118,25 +118,25 @@ app.post('/webhook', function (req, res) {
         var hotOrIced = req.body.result.contexts[1].parameters['Hot-or-Ice'];
         var inputTime = req.body.result.contexts[1].parameters['time'];
         var today = new Date();
-        
+
         //Change to UTC+1
-        today.setHours(today.getHours()+1);
-        
+        today.setHours(today.getHours() + 1);
+
         console.log("## UTC Time : " + today);
-        
+
         var deliveryTime = "";
         var orderDateTime = "";
         //[1]: in order, [2]: ordered, [3]: canceled 
         var orderStatus = "1"; //new order set
         var scheduleYn = "N";
-        
+
         console.log("## coffee : " + coffee);
         console.log("## size : " + size);
-        
-        var price = utilFunc.getPrice(coffee,size);
+
+        var price = utilFunc.getPrice(coffee, size);
 
         console.log("## price : " + price);
-        
+
         if (inputTime === "") {
             scheduleYn = "N";
             deliveryTime = utilFunc.getDirectDeliveryTime();
@@ -144,8 +144,29 @@ app.post('/webhook', function (req, res) {
             console.log("## InputTime : " + inputTime);
             scheduleYn = "Y";
             deliveryTime = inputTime;
+
+            if (utilFunc.checkTime(inputTime, today)) {
+                console.log("## Time order okey");
+            } else {
+                console.log("## Time order wrong");
+                webhookReply = {
+                    "slack": {
+                        "text": "",
+                        "attachments": [
+                            {
+                                "text": "You can only schedule for future time (minimum 10 minutes) today!",
+                                "fallback": "Something is wrong with time.",
+                                "callback_id": "wopr_time",
+                                "color": "#8ce88b",
+                                "attachment_type": "default"
+                            }
+                        ]
+                    }
+                }
+            }
+
         }
-        
+
         orderDateTime = utilFunc.getDateTime(today);
 
         console.log("## input_orderDateTime : " + orderDateTime);
@@ -158,7 +179,7 @@ app.post('/webhook', function (req, res) {
         if (coffee && size && hotOrIced && orderDateTime && deliveryTime) {
             console.log("## Mandatory field success!");
             //Coffee|Size|HotorIced|Dairy|DeliverTime|OrderDateTime|
-            var data = userName + ',' + orderDateTime + ',' + orderStatus+ ',' + coffee + ',' + size + ',' + hotOrIced + ',' + dairy + ',' + deliveryTime + ',' + scheduleYn + ',' + price;
+            var data = userName + ',' + orderDateTime + ',' + orderStatus + ',' + coffee + ',' + size + ',' + hotOrIced + ',' + dairy + ',' + deliveryTime + ',' + scheduleYn + ',' + price;
 
             //Create File
             fs.writeFileSync(fileNm, data);
