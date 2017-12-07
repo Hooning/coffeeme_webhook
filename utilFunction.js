@@ -369,23 +369,22 @@ module.exports = {
             var newDataArr = [];
             var webhookReply = {};
 
-            var userName = "";
-            var orderDateTime = "";
-            var orderStatus = "";
-            var coffee = "";
-            var size = "";
-            var hotOrIced = "";
-            var dairy = "";
-            var deliveryTime = "";
-            var scheduleYn = "";
-            var price = "";
-
             //do not count last one
             var rowLength = rowDataArr.length - 1;
             
             fs.writeFileSync(fileNm, newDataArr);
             
             for (var i = 0; i < rowLength; i++) {
+                var userName = "";
+                var orderDateTime = "";
+                var orderStatus = "";
+                var coffee = "";
+                var size = "";
+                var hotOrIced = "";
+                var dairy = "";
+                var deliveryTime = "";
+                var scheduleYn = "";
+                var price = "";
 
                 var rowData = rowDataArr[i].split(",");
                 //userName|orderDateTime|orderStatus|coffee|size|hotOrIced|dairy|deliveryTime|scheduleYn|price
@@ -402,8 +401,6 @@ module.exports = {
 
                 if (orderStatus === "1") {
                     orderStatus = "3";
-                    validDataArr = rowDataArr[i];
-                   
                 }
                 
                 var updatedLine =  userName+","+orderDateTime+","+orderStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";
@@ -412,6 +409,7 @@ module.exports = {
                     if(err) throw err;
                     console.log("## row["+i+"] appended!!");
                 });
+                
             }
             
             webhookReply = {
