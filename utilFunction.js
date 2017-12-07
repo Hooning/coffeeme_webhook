@@ -25,19 +25,19 @@ module.exports = {
         
         var time = h + m + s;
         
-        console.log("## System Time : " + time);
+        console.log("## Direct Delivery Time : " + time);
         
         return time;
     },
     getDateTime: function(todate){
         console.log("## System todate : " + todate);
         
-        var year = todate.getFullYear().toString();
-        var month = todate.getMonth().toString();
-        var day = todate.getDay().toString();
-        var h = todate.getHours().toString();
-        var m = todate.getMinutes().toString();
-        var s = todate.getSeconds().toString();
+        var year = todate.getFullYear();
+        var month = todate.getMonth();
+        var day = todate.getDay();
+        var h = todate.getHours();
+        var m = todate.getMinutes();
+        var s = todate.getSeconds();
         
         console.log("## year : " + year);
         console.log("## month : " + month);
@@ -46,11 +46,11 @@ module.exports = {
         console.log("## m : " + m);
         console.log("## s : " + s);
 
-        month = checkTime(month);
-        day = checkTime(day);
-        h = checkTime(h);
-        m = checkTime(m);
-        s = checkTime(s);
+        month = checkTime(month).toString();
+        day = checkTime(day).toString();
+        h = checkTime(h).toString();
+        m = checkTime(m).toString();
+        s = checkTime(s).toString();
         
         var DateTime = year + month + day + h + m + s;
         
