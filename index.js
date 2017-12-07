@@ -139,7 +139,7 @@ app.post('/webhook', function (req, res) {
         
         if (inputTime === "") {
             scheduleYn = "N";
-            deliveryTime = utilFunc.getTime(today);
+            deliveryTime = utilFunc.getTime();
         } else {
             console.log("## InputTime : " + inputTime);
             scheduleYn = "Y";

@@ -7,13 +7,17 @@ function checkTime(i) {
 
 //export js files
 module.exports = {
-    getTime: function(todate){
-        todate.setMinutes(todate.getMinutes() + 30);
-        console.log("## UTC Time +30min : " + todate);
+    getDirectDeliveryTime: function(){
+        var today = new Date();
+        //Change to UTC+1
+        today.setHours(today.getHours()+1);
         
-        var h = todate.getHours();
-        var m = todate.getMinutes();
-        var s = todate.getSeconds();
+        today.setMinutes(today.getMinutes() + 30);
+        console.log("## UTC Time +30min : " + today);
+        
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
 
         h = checkTime(h).toString();
         m = checkTime(m).toString();
