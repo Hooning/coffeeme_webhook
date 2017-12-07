@@ -421,7 +421,7 @@ module.exports = {
                     }
                 
             console.log("##rowLength : " + rowLength);
-            console.log("##validDataArr : " + rowDataArr);
+            console.log("##changed file : " + fs.readFileSync(fileNm, 'utf8'));
 
             return webhookReply;
         }
