@@ -8,6 +8,9 @@ function checkTime(i) {
 //export js files
 module.exports = {
     getTime: function(today){
+        
+        today.setMinutes(today.getMinutes() + 30);
+        
         var h = today.getHours();
         var m = today.getMinutes();
         var s = today.getSeconds();
@@ -29,6 +32,13 @@ module.exports = {
         var h = today.getHours();
         var m = today.getMinutes();
         var s = today.getSeconds();
+        
+        console.log("## year : " + year);
+        console.log("## month : " + month);
+        console.log("## day : " + day);
+        console.log("## h : " + h);
+        console.log("## m : " + m);
+        console.log("## s : " + s);
 
         month = checkTime(month);
         day = checkTime(day);
