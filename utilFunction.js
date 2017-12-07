@@ -260,31 +260,7 @@ module.exports = {
                         }
                         //if there is something to cancel
                     } else {
-                        if ( function(deliveryTime){
-                                var inputTime = deliveryTime;
-                                console.log("## cancel_inputTime : " + inputTime);
-
-                                var todate = new Date();
-                                todate.setHours(todate.getHours() + 1);
-
-                                var h = todate.getHours();
-                                var m = todate.getMinutes();
-                                var s = todate.getSeconds();
-
-                                h = checkTime(h).toString();
-                                m = checkTime(m).toString();
-                                s = checkTime(s).toString();
-
-                                var curTime = h + m + s;
-
-                                if (inputTime - curTime < 10) {
-                                    console.log("## Remain time " + inputTime - curTime);
-                                    return false;
-                                } else {
-                                    return true;
-                                }
-
-                        }) {
+                        if ( cancelPossible(deliveryTime) ) {
                             webhookReply = {
                                 "slack": {
                                     "text": "",
@@ -312,24 +288,24 @@ module.exports = {
                                         }
                                     ]
                                 }
-                            }
-                        } else {
-                            webhookReply = {
-                                "slack": {
-                                    "text": "",
-                                    "attachments": [
-                                        {
-                                            "text": "Sorry, you are too late to cancel your order.\n( need more than 10 minutes to cancel.)",
-                                            "fallback": "Something is wrong with cancel.",
-                                            "callback_id": "wopr_cancel",
-                                            "color": "#b72110",
-                                            "attachment_type": "default"
+                              }
+                            } else {
+                                webhookReply = {
+                                    "slack": {
+                                        "text": "",
+                                        "attachments": [
+                                            {
+                                                "text": "Sorry, you are too late to cancel your order.\n( need more than 10 minutes to cancel.)",
+                                                "fallback": "Something is wrong with cancel.",
+                                                "callback_id": "wopr_cancel",
+                                                "color": "#b72110",
+                                                "attachment_type": "default"
+                                            }
+                                        ]
+                                    }
                                 }
-                            ]
-                                }
-                            }
 
-                        }
+                            }
 
                     }
                 }
@@ -357,7 +333,33 @@ module.exports = {
             }
             
             return webhookReply;
-        },
+        }
+        function cancelPossible(deliveryTime){
+                var inputTime = deliveryTime;
+                console.log("## cancel_inputTime : " + inputTime);
+
+                var todate = new Date();
+                todate.setHours(todate.getHours() + 1);
+
+                var h = todate.getHours();
+                var m = todate.getMinutes();
+                var s = todate.getSeconds();
+
+                h = checkTime(h).toString();
+                m = checkTime(m).toString();
+                s = checkTime(s).toString();
+
+                var curTime = h + m + s;
+
+                if (inputTime - curTime < 10) {
+                    console.log("## Remain time " + inputTime - curTime);
+                    return false;
+                } else {
+                    return true;
+                }
+
+        }            
+        ,
         cancelOrder: function (fileNm) {
             var dataList = fs.readFileSync(fileNm, 'utf8');
             var remainCnt = 0;
