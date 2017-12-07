@@ -413,7 +413,7 @@ module.exports = {
                 }else{
                     updatedLine =  userName+","+orderDateTime+","+orderStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";
                     
-                    console.log("same updatedLine : " + updatedLine
+                    console.log("same updatedLine : " + updatedLine);
                 }
                 
                 
