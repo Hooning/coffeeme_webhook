@@ -154,10 +154,10 @@ app.post('/webhook', function (req, res) {
                         "text": "",
                         "attachments": [
                             {
-                                "text": "You can only schedule for future time (minimum 10 minutes) today!",
+                                "text": "You can only schedule for future time (more than 10 minutes) today!\nPlease give me another time.",
                                 "fallback": "Something is wrong with time.",
                                 "callback_id": "wopr_time",
-                                "color": "#8ce88b",
+                                "color": "#b72110",
                                 "attachment_type": "default"
                             }
                         ]
