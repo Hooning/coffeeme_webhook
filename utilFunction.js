@@ -26,6 +26,8 @@ module.exports = {
         return time;
     },
     getDateTime: function(today){
+        console.log("## System today : " + today);
+        
         var year = today.getFullYear();
         var month = today.getMonth();
         var day = today.getDay();
