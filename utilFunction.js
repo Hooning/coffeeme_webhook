@@ -1,3 +1,6 @@
+//make files
+var fs = require('fs');
+
 function checkTime(i) {
   if (i < 10) {
     i = "0" + i;
@@ -58,7 +61,7 @@ module.exports = {
     },
     checkTime: function(inputTime, todate){
         var inTime = inputTime.replace(":","").replace(":","");
-        console.log("## inTime : " + inTime);
+        console.log("## inputTime : " + inTime);
         
         var h = todate.getHours();
         var m = todate.getMinutes()+10;
@@ -70,7 +73,7 @@ module.exports = {
         
         var curTime = h + m + s;
         
-        console.log("## curTime : " + curTime);
+        console.log("## possibleTime : " + curTime + " after");
 
         if(inTime < curTime){
             return false;
@@ -165,6 +168,13 @@ module.exports = {
                 break;      
         }
         
+        return price;
+    },
+    getDataArray: function(fileNm){
+        var dataList = fs.readFileSync(fileNm, 'utf8');
+        
+        var arr = dataList.length;
+                
         return price;
     },
 }

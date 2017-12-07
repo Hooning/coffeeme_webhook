@@ -179,14 +179,28 @@ app.post('/webhook', function (req, res) {
         if (coffee && size && hotOrIced && orderDateTime && deliveryTime) {
             console.log("## Mandatory field success!");
             //Coffee|Size|HotorIced|Dairy|DeliverTime|OrderDateTime|
-            var data = userName + ',' + orderDateTime + ',' + orderStatus + ',' + coffee + ',' + size + ',' + hotOrIced + ',' + dairy + ',' + deliveryTime + ',' + scheduleYn + ',' + price;
+            var data = userName + ',' + orderDateTime + ',' + orderStatus + ',' + coffee + ',' + size + ',' + hotOrIced + ',' + dairy + ',' + deliveryTime + ',' + scheduleYn + ',' + price + '\n';
 
             //Create File
-            fs.writeFileSync(fileNm, data);
+            if(userType === 'newUser'){
+                fs.writeFileSync(fileNm, data);    
+            }else{
+                fs.appendFileSync(fileNm, data, function(err){
+                    if(err) throw err;
+                    console.log("## "+fileNm+" Updated!!");
+                });
+            }
+            
             console.log("## FILE [" + fileNm + "] has been made.");
             console.log("## Read File ##\n" + fs.readFileSync(fileNm, 'utf8'));
         }
-    } else {
+    } else if(actionName === "input.orderstatus" && userName !== "" && userType ==="oldUser"){
+        console.log("## input.orderstatus Action with user-name ##");
+        //set split string to array
+        
+               
+        
+    }else {
         console.log("## Action not catched!! ##");
     }
 
