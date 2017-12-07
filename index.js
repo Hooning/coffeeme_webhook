@@ -200,7 +200,12 @@ app.post('/webhook', function (req, res) {
     } else if(actionName === "input.orderstatus" && userName !== "" && userType ==="oldUser"){
         console.log("## input.orderstatus Action with user-name ##");
         //set split string to array
-        webhookReply = utilFunc.getDataArray(fileNm);
+        webhookReply = utilFunc.getDataArray(fileNm, actionName);
+        
+    } else if(actionName === "input.ordercancel" && userName !== "" && userType === "oldUser"){
+        console.log("## input.ordercancel Action with user-name ##");
+        //set split string to array
+        webhookReply = utilFunc.getDataArray(fileNm, actionName);
         
     }else {
         console.log("## Action not catched!! ##");
