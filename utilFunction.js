@@ -340,6 +340,23 @@ module.exports = {
             console.log("##remainCnt : " + remainCnt);
             console.log("##validDataArr : " + validDataArr);
 
+            if ( remainCnt === 0 ){
+                webhookReply = {
+                  "slack": {
+                    "text": "",
+                    "attachments": [
+                      {
+                        "text": "Currently, there is no order to be cancelled. :joy:\nFirst, make your coffee :coffee: order.",
+                        "fallback": "Something is wrong with cancel.",
+                        "callback_id": "wopr_cancel",
+                        "color": "#b72110",
+                        "attachment_type": "default"
+                      }
+                    ]
+                  }
+                }
+            }
+            
             return webhookReply;
         },
         cancelOrder: function (fileNm) {
