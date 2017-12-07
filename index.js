@@ -119,6 +119,8 @@ app.post('/webhook', function (req, res) {
         var inputTime = req.body.result.contexts[1].parameters['time'];
         var today = new Date();
         
+        today = today.toUTCString();
+        
         var deliveryTime = "";
         var orderDateTime = "";
         //[1]: in order, [2]: ordered, [3]: canceled 

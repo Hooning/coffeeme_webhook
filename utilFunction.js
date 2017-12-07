@@ -8,8 +8,7 @@ function checkTime(i) {
 //export js files
 module.exports = {
     getTime: function(today){
-        
-        today.setMinutes(today.getMinutes() + 30);
+        var deliveryTime = deliveryTime.setMinutes(today.getMinutes() + 30);
         
         var h = today.getHours();
         var m = today.getMinutes();
