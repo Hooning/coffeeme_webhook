@@ -15,9 +15,9 @@ module.exports = {
         var m = today.getMinutes();
         var s = today.getSeconds();
 
-        h = checkTime(h);
-        m = checkTime(m);
-        s = checkTime(s);
+        h = checkTime(h).toString();
+        m = checkTime(m).toString();
+        s = checkTime(s).toString();
         
         var time = h + m + s;
         
@@ -28,12 +28,12 @@ module.exports = {
     getDateTime: function(today){
         console.log("## System today : " + today);
         
-        var year = today.getFullYear();
-        var month = today.getMonth();
-        var day = today.getDay();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var s = today.getSeconds();
+        var year = today.getFullYear().toString();
+        var month = today.getMonth().toString();
+        var day = today.getDay().toString();
+        var h = today.getHours().toString();
+        var m = today.getMinutes().toString();
+        var s = today.getSeconds().toString();
         
         console.log("## year : " + year);
         console.log("## month : " + month);
