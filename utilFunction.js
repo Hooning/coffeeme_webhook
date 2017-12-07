@@ -385,6 +385,7 @@ module.exports = {
                 var deliveryTime = "";
                 var scheduleYn = "";
                 var price = "";
+                var updatedLine = "";
 
                 var rowData = rowDataArr[i].split(",");
                 //userName|orderDateTime|orderStatus|coffee|size|hotOrIced|dairy|deliveryTime|scheduleYn|price
@@ -400,10 +401,14 @@ module.exports = {
                 price = rowData[9];
 
                 if (orderStatus === "1") {
-                    orderStatus = "3";
+                    var cancelStatus = "3";
+                    
+                    updatedLine =  userName+","+orderDateTime+","+cancelStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";
+                }else{
+                    updatedLine =  userName+","+orderDateTime+","+orderStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";  
                 }
                 
-                var updatedLine =  userName+","+orderDateTime+","+orderStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";
+                
 
                 fs.appendFileSync(fileNm, updatedLine, function(err){
                     if(err) throw err;
