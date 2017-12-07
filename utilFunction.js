@@ -7,12 +7,12 @@ function checkTime(i) {
 
 //export js files
 module.exports = {
-    getTime: function(today){
-        var deliveryTime = deliveryTime.setMinutes(today.getMinutes() + 30);
+    getTime: function(todate){
+        todate = todate.setMinutes(today.getMinutes() + 30);
         
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var s = today.getSeconds();
+        var h = todate.getHours();
+        var m = todate.getMinutes();
+        var s = todate.getSeconds();
 
         h = checkTime(h).toString();
         m = checkTime(m).toString();
@@ -24,15 +24,15 @@ module.exports = {
         
         return time;
     },
-    getDateTime: function(today){
-        console.log("## System today : " + today);
+    getDateTime: function(todate){
+        console.log("## System todate : " + todate);
         
-        var year = today.getFullYear().toString();
-        var month = today.getMonth().toString();
-        var day = today.getDay().toString();
-        var h = today.getHours().toString();
-        var m = today.getMinutes().toString();
-        var s = today.getSeconds().toString();
+        var year = todate.getFullYear().toString();
+        var month = todate.getMonth().toString();
+        var day = todate.getDay().toString();
+        var h = todate.getHours().toString();
+        var m = todate.getMinutes().toString();
+        var s = todate.getSeconds().toString();
         
         console.log("## year : " + year);
         console.log("## month : " + month);
