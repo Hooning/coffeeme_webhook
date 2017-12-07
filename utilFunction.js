@@ -391,7 +391,7 @@ module.exports = {
                 //userName|orderDateTime|orderStatus|coffee|size|hotOrIced|dairy|deliveryTime|scheduleYn|price
                 userName = rowData[0];
                 orderDateTime = rowData[1];
-                orderStatus = [2];
+                orderStatus = rowData[2];
                 coffee = rowData[3];
                 size = rowData[4];
                 hotOrIced = rowData[5];
