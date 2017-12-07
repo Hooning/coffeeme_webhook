@@ -60,8 +60,7 @@ module.exports = {
         return DateTime;
     },
     checkTime: function(inputTime, todate){
-        var inTime = inputTime.replace(":","").replace(":","");
-        console.log("## inputTime : " + inTime);
+        console.log("## inputTime : " + inputTime);
         
         var h = todate.getHours();
         var m = todate.getMinutes()+10;
@@ -75,7 +74,7 @@ module.exports = {
         
         console.log("## possibleTime : " + curTime + " after");
 
-        if(inTime < curTime){
+        if(inputTime < curTime){
             return false;
         }else{
             return true;
@@ -172,12 +171,36 @@ module.exports = {
     },
     getDataArray: function(fileNm){
         var dataList = fs.readFileSync(fileNm, 'utf8');
+        var remainCnt = 0;
+        var rowDataArr = dataList.split('\n');
+        var validDataArr = [];
         
-        var rowDate = dataList.split('\n');
+        //do not count last one
+        var rowLength = rowDataArr.length-1;
         
-        var rowLength = rowDate.length;
-        
-        console.log("##rowLength : " + rowLength)
+        for( var i = 0; i < rowLength; i++){
+            
+            var rowData = rowDataArr[i].split(",");
+            //userName|orderDateTime|orderStatus|coffee|size|hotOrIced|dairy|deliveryTime|scheduleYn|price
+            var userName = rowData[0];
+            var orderDateTime = rowData[1];
+            var orderStatus = rowData[2];
+            var coffee = rowData[3];
+            var size = rowData[4];
+            var hotOrIced = rowData[5];
+            var dairy = rowData[6];
+            var deliveryTime = rowData[7];
+            var scheduleYn = rowData[8];
+            var price = rowData[9];
+            
+            if( orderStatus === "1"){
+                remainCnt++;
+                validDataArr = rowDataArr;
+            }
+        }
+        console.log("##rowLength : " + rowLength);
+        console.log("##remainCnt : " + remainCnt);
+        console.log("##validDataArr : " + validDataArr);
                 
         return price;
     },

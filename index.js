@@ -122,6 +122,9 @@ app.post('/webhook', function (req, res) {
         //Change to UTC+1
         today.setHours(today.getHours() + 1);
 
+        //input time remove ':'
+        inputTime = inputTime.replace(":","").replace(":","");
+        
         console.log("## UTC Time : " + today);
 
         var deliveryTime = "";
@@ -178,7 +181,7 @@ app.post('/webhook', function (req, res) {
 
         if (coffee && size && hotOrIced && orderDateTime && deliveryTime) {
             console.log("## Mandatory field success!");
-            //Coffee|Size|HotorIced|Dairy|DeliverTime|OrderDateTime|
+            //userName|orderDateTime|orderStatus|coffee|size|hotOrIced|dairy|deliveryTime|scheduleYn|price
             var data = userName + ',' + orderDateTime + ',' + orderStatus + ',' + coffee + ',' + size + ',' + hotOrIced + ',' + dairy + ',' + deliveryTime + ',' + scheduleYn + ',' + price + '\n';
 
             //Create File
