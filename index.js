@@ -120,7 +120,7 @@ app.post('/webhook', function (req, res) {
         var today = new Date();
         
         //Change to UTC+1
-        today.setHourse(today.getHours()+1);
+        today.setHours(today.getHours()+1);
         
         console.log("## UTC Time : " + today);
         
