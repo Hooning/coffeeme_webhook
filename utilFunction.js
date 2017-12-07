@@ -260,7 +260,32 @@ module.exports = {
                         }
                         //if there is something to cancel
                     } else {
-                        if ( cancelPossible(deliveryTime) ) {
+                        
+                        var inputTime = deliveryTime;
+                        var cancelBool = false;
+                        console.log("## cancel_inputTime : " + inputTime);
+
+                        var todate = new Date();
+                        todate.setHours(todate.getHours() + 1);
+
+                        var h = todate.getHours();
+                        var m = todate.getMinutes();
+                        var s = todate.getSeconds();
+
+                        h = checkTime(h).toString();
+                        m = checkTime(m).toString();
+                        s = checkTime(s).toString();
+
+                        var curTime = h + m + s;
+
+                        if (inputTime - curTime < 10) {
+                            console.log("## Remain time " + inputTime - curTime);
+                            cancelBool = false;
+                        } else {
+                            cancelBool = true;
+                        }
+                        
+                        if ( cancelBool ) {
                             webhookReply = {
                                 "slack": {
                                     "text": "",
@@ -333,33 +358,7 @@ module.exports = {
             }
             
             return webhookReply;
-        }
-        function cancelPossible(deliveryTime){
-                var inputTime = deliveryTime;
-                console.log("## cancel_inputTime : " + inputTime);
-
-                var todate = new Date();
-                todate.setHours(todate.getHours() + 1);
-
-                var h = todate.getHours();
-                var m = todate.getMinutes();
-                var s = todate.getSeconds();
-
-                h = checkTime(h).toString();
-                m = checkTime(m).toString();
-                s = checkTime(s).toString();
-
-                var curTime = h + m + s;
-
-                if (inputTime - curTime < 10) {
-                    console.log("## Remain time " + inputTime - curTime);
-                    return false;
-                } else {
-                    return true;
-                }
-
-        }            
-        ,
+        },
         cancelOrder: function (fileNm) {
             var dataList = fs.readFileSync(fileNm, 'utf8');
             var remainCnt = 0;
