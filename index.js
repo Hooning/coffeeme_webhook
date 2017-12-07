@@ -202,10 +202,15 @@ app.post('/webhook', function (req, res) {
         //set split string to array
         webhookReply = utilFunc.getDataArray(fileNm, actionName);
         
+    } else if(actionName === "input.cancelcheck" && userName !== "" && userType === "oldUser"){
+        console.log("## input.cancelcheck Action with user-name ##");
+        //set split string to array
+        webhookReply = utilFunc.getDataArray(fileNm, actionName);
+        
     } else if(actionName === "input.ordercancel" && userName !== "" && userType === "oldUser"){
         console.log("## input.ordercancel Action with user-name ##");
         //set split string to array
-        webhookReply = utilFunc.getDataArray(fileNm, actionName);
+        webhookReply = utilFunc.cancelOrder(fileNm);
         
     }else {
         console.log("## Action not catched!! ##");

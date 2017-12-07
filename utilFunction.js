@@ -341,5 +341,64 @@ module.exports = {
             console.log("##validDataArr : " + validDataArr);
 
             return webhookReply;
+        },
+        cancelOrder: function (fileNm) {
+            var dataList = fs.readFileSync(fileNm, 'utf8');
+            var remainCnt = 0;
+            var rowDataArr = dataList.split('\n');
+            var validDataArr = [];
+            var webhookReply = {};
+
+            var userName = "";
+            var orderDateTime = "";
+            var orderStatus = "";
+            var coffee = "";
+            var size = "";
+            var hotOrIced = "";
+            var dairy = "";
+            var deliveryTime = "";
+            var scheduleYn = "";
+            var price = "";
+
+            //do not count last one
+            var rowLength = rowDataArr.length - 1;
+
+            for (var i = 0; i < rowLength; i++) {
+
+                var rowData = rowDataArr[i].split(",");
+                //userName|orderDateTime|orderStatus|coffee|size|hotOrIced|dairy|deliveryTime|scheduleYn|price
+                userName = rowData[0];
+                orderDateTime = rowData[1];
+                orderStatus = [2];
+                coffee = rowData[3];
+                size = rowData[4];
+                hotOrIced = rowData[5];
+                dairy = rowData[6];
+                deliveryTime = rowData[7];
+                scheduleYn = rowData[8];
+                price = rowData[9];
+
+                if (orderStatus === "1") {
+                    orderStatus = "3";
+                    validDataArr = rowDataArr[i];
+                   
+                    var updatedLine =  userName+","+orderDateTime+","+orderStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";
+                    
+                    rowDataArr[i] = "";
+                    rowDataArr[i] = updatedLine;
+                    
+                    webhookReply = {
+                        "slack": {
+                            "text": "Your order has been canceled. :crying_cat_face:",
+                        }
+                    }
+                    
+                }
+            }
+                
+            console.log("##rowLength : " + rowLength);
+            console.log("##validDataArr : " + rowDataArr);
+
+            return webhookReply;
         }
 }
