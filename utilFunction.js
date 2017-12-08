@@ -71,6 +71,10 @@ module.exports = {
             
             var inputDate = new Date();
             
+            console.log("## inHour : " + inHour);
+            console.log("## inMinutes : " + inMinutes);
+            console.log("## inSeconds : " + inSeconds);
+            
             inputDate.setHours(inHour);
             inputDate.setHours(inMinutes);
             inputDate.setHours(inSeconds);
