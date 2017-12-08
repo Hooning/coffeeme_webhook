@@ -384,7 +384,7 @@ module.exports = {
             var validDataArr = [];
             var newDataArr = [];
             var webhookReply = {};
-
+            
             //do not count last one
             var rowLength = rowDataArr.length - 1;
             
@@ -416,24 +416,62 @@ module.exports = {
                 scheduleYn = rowData[8];
                 price = rowData[9];
                 
-                console.log("prev orderStatus : " + orderStatus);
-                
                 if (orderStatus === "1") {
-                    var cancelStatus = "3";
                     
-                    console.log("cancelStatus : " + cancelStatus);
+                    //cancel order validation start
+                    var inputTime = deliveryTime;
+                    var cancelBool = false;
+                    console.log("## cancel_inputTime : " + inputTime);
+
+                    var todate = new Date();
+                    todate.setHours(todate.getHours() + 1);
+
+                    var h = todate.getHours();
+                    var m = todate.getMinutes();
+                    var s = todate.getSeconds();
+
+                    h = checkTime(h).toString();
+                    m = checkTime(m).toString();
+                    s = checkTime(s).toString();
+
+                    var curTime = h + m + s;
+
+                    console.log("## ordercancel-Remain time " + (inputTime - curTime) );
+
+                    if ((inputTime - curTime) < 1000) {
+                        cancelBool = true;
+                    } else {
+                        cancelBool = false;
+                    }
+
+                    if (cancelBool){
+                        webhookReply = {
+                            "slack": {
+                                "text": "",
+                                "attachments": [
+                                    {
+                                        "text": "Sorry, you are too late to cancel your order.\n( need more than 10 minutes to cancel.)",
+                                        "fallback": "Something is wrong with cancel.",
+                                        "callback_id": "wopr_cancel",
+                                        "color": "#b72110",
+                                        "attachment_type": "default"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                    //cancel order validation end
+                    
+                    
+                    var cancelStatus = "3";
                     
                     updatedLine =  userName+","+orderDateTime+","+cancelStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";
                     
-                    console.log("change updatedLine : " + updatedLine);
                 }else{
                     updatedLine =  userName+","+orderDateTime+","+orderStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";
                     
-                    console.log("same updatedLine : " + updatedLine);
                 }
                 
-                
-
                 fs.appendFileSync(fileNm, updatedLine, function(err){
                     if(err) throw err;
                     console.log("## row["+i+"] appended!!");
