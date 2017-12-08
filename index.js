@@ -40,7 +40,7 @@ app.post('/webhook', function (req, res) {
     var fileNm = userName + '.txt';
     var userType = userManage.checkUser(fileNm);
     var greetings = "";
-    //var webhookReply = {};
+    var remainOrder = {};
 
     if (actionName === "input.welcome" && userName !== "") {
         console.log("## input.welcome Action in with user-name ##")
@@ -52,12 +52,10 @@ app.post('/webhook', function (req, res) {
             greetings += ":wave: \nPlease order your Coffee :coffee:";
         } else {
             // Check if the order is in process
-            webhookReply = utilFunc.getDataArray(fileNm, actionName);
+            remainOrder = utilFunc.getDataArray(fileNm, actionName);
         
-            var callback_id = webhookReply.slack.attachments[0].callback_id;
-            
-            if ( callback_id === "wopr_cannotorder"){
-                return;
+            if ( remainOrder === ""){
+                
             }
             
             
@@ -68,7 +66,7 @@ app.post('/webhook', function (req, res) {
 
         greetings = greetings.toString();
 
-        webhookReply = {
+        var webhookReply = {
             "slack": {
                 "text": greetings,
                 "attachments": [
