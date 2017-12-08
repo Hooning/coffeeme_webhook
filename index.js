@@ -39,13 +39,17 @@ app.post('/webhook', function (req, res) {
     var userName = "David";
     var fileNm = userName + '.txt';
     var userType = userManage.checkUser(fileNm);
-
     var greetings = "";
+    var remainOrder = {};
 
     if (actionName === "input.welcome" && userName !== "") {
         console.log("## input.welcome Action in with user-name ##")
         // parameters are stored in req.body.result.parameters
 
+        // Check if the order is in process
+        remainOrder = getDataArray(fileNm, actionName);
+        
+        
         if (userType === "newUser") {
             greetings += "Nice to meet you ";
             greetings += userName.toString();

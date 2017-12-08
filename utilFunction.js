@@ -259,7 +259,7 @@ module.exports = {
                             }
                         }
                         //if there is something to cancel
-                    } else {
+                    } else if(action === "input.cancelcheck") {
                         
                         var inputTime = deliveryTime;
                         var cancelBool = false;
@@ -334,6 +334,22 @@ module.exports = {
 
                             }
 
+                    }else{
+                        console.log("## Alread have order !!");
+                        webhookReply = {
+                            "slack": {
+                                        "text": "",
+                                        "attachments": [
+                                            {
+                                                "text": "Sorry, you already have ongoing order. :wink:",
+                                                "fallback": "Something is wrong with order.",
+                                                "callback_id": "wopr_cannotorder",
+                                                "color": "#b72110",
+                                                "attachment_type": "default"
+                                            }
+                                        ]
+                                    }    
+                        }
                     }
                 }
                 
