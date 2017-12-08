@@ -52,7 +52,7 @@ app.post('/webhook', function (req, res) {
             greetings += ":wave: \nPlease order your Coffee :coffee:";
         } else {
             // Check if the order is in process
-            var webhookReply = utilFunc.getDataArray(fileNm, actionName);
+            webhookReply = utilFunc.getDataArray(fileNm, actionName);
         
             var callback_id = webhookReply.slack.attachments[0].callback_id;
             
