@@ -118,7 +118,7 @@ app.post('/webhook', function (req, res) {
 
             var callback_id = remainOrder.slack.attachments[0].callback_id;
 
-            if ( remainOrder === "wopr_cannotorder"){
+            if ( callback_id === "wopr_cannotorder"){
                 webhookReply = remainOrder;
             }
         }
