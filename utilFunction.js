@@ -64,20 +64,25 @@ module.exports = {
         },
         checkTime: function (inputTime, todate) {
             console.log("## inputTime : " + inputTime);
+            
+            var inHour = inputTime.substring(0,2);
+            var inMinutes = inputTime.substring(2,4);
+            var inSeconds = inputTime.substring(4,6);
+            
+            var inputDate = new Date();
+            
+            inputDate.setHours(inHour);
+            inputDate.setHours(inMinutes);
+            inputDate.setHours(inSeconds);
+                        
+            todate.setMinutes(todate.getMinutes() + 10);
+            
+            var diffMs = (inputDate-todate);
+            var diffMins = Math.round(((diffMs%86400000)%3600000)/60000); // minutes
 
-            var h = todate.getHours();
-            var m = todate.getMinutes() + 10;
-            var s = todate.getSeconds();
+            console.log("## Remain : " + diffMins + " minutes");
 
-            h = checkTime(h).toString();
-            m = checkTime(m).toString();
-            s = checkTime(s).toString();
-
-            var curTime = h + m + s;
-
-            console.log("## possibleTime : " + curTime + " after");
-
-            if (inputTime < curTime) {
+            if (diffMins < 10) {
                 return false;
             } else {
                 return true;
