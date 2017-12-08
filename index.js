@@ -51,13 +51,6 @@ app.post('/webhook', function (req, res) {
             greetings += userName.toString();
             greetings += ":wave: \nPlease order your Coffee :coffee:";
         } else {
-            // Check if the order is in process
-            remainOrder = utilFunc.getDataArray(fileNm, actionName);
-        
-            if ( remainOrder === ""){
-                
-            }
-            
             
             greetings += "Welcome back ";
             greetings += userName.toString();
@@ -117,6 +110,15 @@ app.post('/webhook', function (req, res) {
                         }
                     ]
             }
+        }
+        
+        // Check if the order is in process
+        remainOrder = utilFunc.getDataArray(fileNm, actionName);
+
+        var callback_id = remainOrder.slack.attachments[0].callback_id;
+
+        if ( remainOrder === "wopr_cannotorder"){
+            webhookReply = remainOrder;
         }
 
     } else if (actionName === "input.orderdone") {
