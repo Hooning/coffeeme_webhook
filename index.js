@@ -112,13 +112,15 @@ app.post('/webhook', function (req, res) {
             }
         }
         
-        // Check if the order is in process
-        remainOrder = utilFunc.getDataArray(fileNm, actionName);
+        if (userType === "oldUser") {
+            // Check if the order is in process
+            remainOrder = utilFunc.getDataArray(fileNm, actionName);
 
-        var callback_id = remainOrder.slack.attachments[0].callback_id;
+            var callback_id = remainOrder.slack.attachments[0].callback_id;
 
-        if ( remainOrder === "wopr_cannotorder"){
-            webhookReply = remainOrder;
+            if ( remainOrder === "wopr_cannotorder"){
+                webhookReply = remainOrder;
+            }
         }
 
     } else if (actionName === "input.orderdone") {
