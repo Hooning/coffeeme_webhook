@@ -40,21 +40,27 @@ app.post('/webhook', function (req, res) {
     var fileNm = userName + '.txt';
     var userType = userManage.checkUser(fileNm);
     var greetings = "";
-    var remainOrder = {};
+    var webhookReply = {};
 
     if (actionName === "input.welcome" && userName !== "") {
         console.log("## input.welcome Action in with user-name ##")
         // parameters are stored in req.body.result.parameters
-
-        // Check if the order is in process
-        remainOrder = utilFunc.getDataArray(fileNm, actionName);
-        
         
         if (userType === "newUser") {
             greetings += "Nice to meet you ";
             greetings += userName.toString();
             greetings += ":wave: \nPlease order your Coffee :coffee:";
         } else {
+            // Check if the order is in process
+            webhookReply = utilFunc.getDataArray(fileNm, actionName);
+        
+            var callback_id = webhookReply.slack.attachments[0].callback_id;
+            
+            if ( callback_id === "wopr_cannotorder"){
+                return;
+            }
+            
+            
             greetings += "Welcome back ";
             greetings += userName.toString();
             greetings += ":sunglasses:\nWhich coffee is in your mind?"
@@ -62,7 +68,7 @@ app.post('/webhook', function (req, res) {
 
         greetings = greetings.toString();
 
-        var webhookReply = {
+        webhookReply = {
             "slack": {
                 "text": greetings,
                 "attachments": [
