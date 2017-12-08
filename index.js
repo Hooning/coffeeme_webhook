@@ -47,7 +47,7 @@ app.post('/webhook', function (req, res) {
         // parameters are stored in req.body.result.parameters
 
         // Check if the order is in process
-        remainOrder = getDataArray(fileNm, actionName);
+        remainOrder = utilFunc.getDataArray(fileNm, actionName);
         
         
         if (userType === "newUser") {
