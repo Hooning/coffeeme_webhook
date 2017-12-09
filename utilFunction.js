@@ -71,7 +71,7 @@ module.exports = {
             
             delivDate = new Date();
             delivDate.setHours(h);
-            delivDate.setMinute(m);
+            delivDate.setMinutes(m);
             delivDate.setSeconds(s);
 //            var h = todate.getHours();
 //            var m = todate.getMinutes() + 10;
