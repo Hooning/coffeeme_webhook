@@ -64,20 +64,23 @@ module.exports = {
         },
         checkTime: function (inputTime, todate) {
             console.log("## inputTime : " + inputTime);
+            
+            var h = inputTime.substring(0,2);
+            var m = inputTime.substring(2,4);
+            var s = inputTime.substring(4,6);
+            
+            delivDate = new Date();
+            delivDate.setHours(h);
+            delivDate.setMinute(m);
+            delivDate.setSeconds(s);
+//            var h = todate.getHours();
+//            var m = todate.getMinutes() + 10;
+//            var s = todate.getSeconds();
+            todate.setMinutes(todate.getMinutes()+10);
 
-            var h = todate.getHours();
-            var m = todate.getMinutes() + 10;
-            var s = todate.getSeconds();
+            console.log("## possibleTime : " + delivDate + " after");
 
-            h = checkTime(h).toString();
-            m = checkTime(m).toString();
-            s = checkTime(s).toString();
-
-            var curTime = h + m + s;
-
-            console.log("## possibleTime : " + curTime + " after");
-
-            if (inputTime < curTime) {
+            if (delivDate < todate) {
                 return false;
             } else {
                 return true;
@@ -463,8 +466,7 @@ module.exports = {
                         return webhookReply;
                     }
                     //cancel order validation end
-                    
-                    
+                                        
                     var cancelStatus = "3";
                     
                     updatedLine =  userName+","+orderDateTime+","+cancelStatus+","+coffee+","+size+","+hotOrIced+","+dairy+","+deliveryTime+","+scheduleYn+","+price+"\n";
