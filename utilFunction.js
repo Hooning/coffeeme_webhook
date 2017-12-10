@@ -181,23 +181,24 @@ module.exports = {
             var rowDataArr = dataList.split('\n');
             var validDataArr = [];
             var webhookReply = {};
-
-            var userName = "";
-            var orderDateTime = "";
-            var orderStatus = "";
-            var coffee = "";
-            var size = "";
-            var hotOrIced = "";
-            var dairy = "";
-            var deliveryTime = "";
-            var scheduleYn = "";
-            var price = "";
+            
+            console.log("#### File Data ####\n" + dataList);
 
             //do not count last one
             var rowLength = rowDataArr.length - 1;
-
+            
             for (var i = 0; i < rowLength; i++) {
-
+                var userName = "";
+                var orderDateTime = "";
+                var orderStatus = "";
+                var coffee = "";
+                var size = "";
+                var hotOrIced = "";
+                var dairy = "";
+                var deliveryTime = "";
+                var scheduleYn = "";
+                var price = "";                
+                
                 var rowData = rowDataArr[i].split(",");
                 //userName|orderDateTime|orderStatus|coffee|size|hotOrIced|dairy|deliveryTime|scheduleYn|price
                 userName = rowData[0];
