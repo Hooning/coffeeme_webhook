@@ -364,21 +364,39 @@ module.exports = {
             console.log("##validDataArr : " + validDataArr);
 
             if ( remainCnt === 0 ){
-                webhookReply = {
-                  "slack": {
-                    "text": "",
-                    "attachments": [
-                      {
-                        "text": "Currently, there is no order to be delivered. :cold_sweat:\nFirst, make your coffee :coffee: order.",
-                        "fallback": "Something is wrong with cancel.",
-                        "callback_id": "wopr_cancel",
-                        "color": "#b72110",
-                        "attachment_type": "default"
+                if(action === "input.cancelcheck"){
+                    webhookReply = {
+                      "slack": {
+                        "text": "",
+                        "attachments": [
+                          {
+                            "text": "Currently, there is no order to be canceled. :sweat_smile:\nFirst, make your coffee :coffee: order.",
+                            "fallback": "Something is wrong with cancel.",
+                            "callback_id": "wopr_cancel",
+                            "color": "#b72110",
+                            "attachment_type": "default"
+                          }
+                        ]
                       }
-                    ]
-                  }
+                    }
+                }else{
+                    webhookReply = {
+                      "slack": {
+                        "text": "",
+                        "attachments": [
+                          {
+                            "text": "Currently, there is no order to be delivered. :cold_sweat:\nFirst, make your coffee :coffee: order.",
+                            "fallback": "Something is wrong with cancel.",
+                            "callback_id": "wopr_cancel",
+                            "color": "#b72110",
+                            "attachment_type": "default"
+                          }
+                        ]
+                      }
+                    }
                 }
             }
+                
             
             return webhookReply;
         },
