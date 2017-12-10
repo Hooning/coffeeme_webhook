@@ -268,24 +268,25 @@ module.exports = {
                         var inputTime = deliveryTime;
                         var cancelBool = false;
                         console.log("## cancel_inputTime : " + inputTime);
+                        
+                        var dHour = inputTime.substr(0,2);
+                        var dMin = inputTime.substr(2,2);
+                        var dSec = inputTime.substr(4,2);
+                        
+                        var delivDate = new Date();
+                        delivDate.setHours(dHour);
+                        delivDate.setMinutes(dMin);
+                        delivDate.setSeconds(dSec);
 
                         var todate = new Date();
                         todate.setHours(todate.getHours() + 1);
 
-                        var h = todate.getHours();
-                        var m = todate.getMinutes();
-                        var s = todate.getSeconds();
-
-                        h = checkTime(h).toString();
-                        m = checkTime(m).toString();
-                        s = checkTime(s).toString();
-
-                        var curTime = h + m + s;
+                        var remainSec = (delivDate.getTime() - todate.getTime()) / 1000;
                         
-                        console.log("## Remain time " + (inputTime - curTime) );
+                        console.log("## Remain time " + remainSec );
                                     
                         
-                        if ((inputTime - curTime) < 1000) {
+                        if (remainSec < 600) {
                             cancelBool = false;
                         } else {
                             cancelBool = true;
