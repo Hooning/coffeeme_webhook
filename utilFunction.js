@@ -283,7 +283,7 @@ module.exports = {
 
                         var remainSec = (delivDate.getTime() - todate.getTime()) / 1000;
                         
-                        console.log("## Remain time " + remainSec );
+                        console.log("## cancelCheck remain time " + remainSec );
                                     
                         
                         if (remainSec < 600) {
@@ -428,27 +428,29 @@ module.exports = {
                     var cancelBool = false;
                     console.log("## cancel_inputTime : " + inputTime);
 
+                    var dHour = inputTime.substr(0,2);
+                    var dMin = inputTime.substr(2,2);
+                    var dSec = inputTime.substr(4,2);
+
+                    var delivDate = new Date();
+                    delivDate.setHours(dHour);
+                    delivDate.setMinutes(dMin);
+                    delivDate.setSeconds(dSec);
+
                     var todate = new Date();
                     todate.setHours(todate.getHours() + 1);
 
-                    var h = todate.getHours();
-                    var m = todate.getMinutes();
-                    var s = todate.getSeconds();
+                    var remainSec = (delivDate.getTime() - todate.getTime()) / 1000;
 
-                    h = checkTime(h).toString();
-                    m = checkTime(m).toString();
-                    s = checkTime(s).toString();
+                    console.log("## CancelOrder() Remain time " + remainSec );
 
-                    var curTime = h + m + s;
 
-                    console.log("## ordercancel-Remain time " + (inputTime - curTime) );
-
-                    if ((inputTime - curTime) < 1000) {
+                    if (remainSec < 600) {
                         cancelBool = true;
                     } else {
                         cancelBool = false;
                     }
-
+                    
                     if (cancelBool){
                         webhookReply = {
                             "slack": {
