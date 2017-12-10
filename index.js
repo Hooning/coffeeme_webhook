@@ -160,7 +160,9 @@ app.post('/webhook', function (req, res) {
             scheduleYn = "Y";
             deliveryTime = inputTime;
 
-            if (utilFunc.checkTime(inputTime, today)) {
+            var timeOrderOk = utilFunc.checkTime(inputTime, today);
+            
+            if (timeOrderOk) {
                 console.log("## Time order okey");
             } else {
                 console.log("## Time order wrong");
@@ -191,7 +193,7 @@ app.post('/webhook', function (req, res) {
         console.log("## input_scheduleYn : " + scheduleYn);
         console.log("## input_deliveryTime : " + deliveryTime);
 
-        if (coffee && size && hotOrIced && orderDateTime && deliveryTime) {
+        if (coffee && size && hotOrIced && orderDateTime && deliveryTime && timeOrderOk) {
             console.log("## Mandatory field success!");
             //userName|orderDateTime|orderStatus|coffee|size|hotOrIced|dairy|deliveryTime|scheduleYn|price
             var data = userName + ',' + orderDateTime + ',' + orderStatus + ',' + coffee + ',' + size + ',' + hotOrIced + ',' + dairy + ',' + deliveryTime + ',' + scheduleYn + ',' + price + '\n';

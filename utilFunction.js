@@ -69,7 +69,7 @@ module.exports = {
             var m = inputTime.substring(2,4);
             var s = inputTime.substring(4,6);
             
-            delivDate = new Date();
+            var delivDate = new Date();
             delivDate.setHours(h);
             delivDate.setMinutes(m);
             delivDate.setSeconds(s);
@@ -78,7 +78,10 @@ module.exports = {
 //            var s = todate.getSeconds();
             todate.setMinutes(todate.getMinutes()+10);
 
-            console.log("## possibleTime : " + delivDate + " after");
+            console.log("## inputDelivDate : " + delivDate);
+            console.log("## possibleDate : " + todate );
+            console.log("## inputDelivTime : " + delivDate.getTime());
+            console.log("## possibleTime : " + todate.getTime() );
 
             if (delivDate < todate) {
                 return false;
