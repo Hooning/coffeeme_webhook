@@ -244,12 +244,12 @@ module.exports = {
                                         "color": "#724f0c",
                                         "attachment_type": "default",
                                         "actions": [
-                                            {
-                                                "name": "Cancel Order",
-                                                "text": "Cancel Order",
-                                                "type": "button",
-                                                "value": "Cancel Order"
-                                            },
+//                                            {
+//                                                "name": "Cancel Order",
+//                                                "text": "Cancel Order",
+//                                                "type": "button",
+//                                                "value": "Cancel Order"
+//                                            },
                                             {
                                                 "name": "Okey",
                                                 "text": "OK",
