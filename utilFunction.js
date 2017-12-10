@@ -244,12 +244,12 @@ module.exports = {
                                         "color": "#724f0c",
                                         "attachment_type": "default",
                                         "actions": [
-//                                            {
-//                                                "name": "Cancel Order",
-//                                                "text": "Cancel Order",
-//                                                "type": "button",
-//                                                "value": "Cancel Order"
-//                                            },
+                                            {
+                                                "name": "Cancel Order",
+                                                "text": "Cancel Order",
+                                                "type": "button",
+                                                "value": "Cancel Order"
+                                            },
                                             {
                                                 "name": "Okey",
                                                 "text": "OK",
@@ -485,7 +485,16 @@ module.exports = {
             
             webhookReply = {
                         "slack": {
-                            "text": "Your order has been canceled. :crying_cat_face:",
+                            "text": "",
+                            "attachments": [
+                                        {
+                                            "text": "Your order has been canceled. :ghost:",
+                                            "fallback": "Something is wrong with cancel.",
+                                            "callback_id": "wopr_cancel",
+                                            "color": "#b72110",
+                                            "attachment_type": "default" 
+                                        }
+                                    ]
                         }
                     }
                 
