@@ -1,0 +1,105 @@
+{
+    "originalRequest": {
+        "source": "slack_testbot",
+        "data": {
+            "event_ts": "1512941856.000085",
+            "channel": "D86D4LZEW",
+            "text": "I want to order Hot Grande Latte with fat free milk.",
+            "type": "message",
+            "user": "U7UV3RBUY",
+            "ts": "1512941856.000085"
+        }
+    },
+    "id": "3cac24a9-f022-4422-8471-b6188a96b806",
+    "timestamp": "2017-12-10T21:37:37.23Z",
+    "lang": "en",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "I want to order Hot Grande Latte with fat free milk.",
+        "speech": "",
+        "action": "input.coffeeorder",
+        "actionIncomplete": false,
+        "parameters": {
+            "Dairy": "Fat Free",
+            "Hot-or-Ice": "Hot",
+            "Coffee": "Caffe Latte",
+            "Size": "Grande"
+        },
+        "contexts": [{
+            "name": "coffeeorder-followup",
+            "parameters": {
+                "Size.original": "Grande",
+                "Dairy.original": "fat free",
+                "Coffee.original": "Latte",
+                "Size": "Grande",
+                "Hot-or-Ice.original": "Hot",
+                "Dairy": "Fat Free",
+                "Hot-or-Ice": "Hot",
+                "Coffee": "Caffe Latte"
+            },
+            "lifespan": 3
+        }, {
+            "name": "generic",
+            "parameters": {
+                "slack_user_id": "U7UV3RBUY",
+                "Size.original": "Grande",
+                "Dairy.original": "fat free",
+                "user-name": "",
+                "Coffee.original": "Latte",
+                "slack_channel": "D86D4LZEW",
+                "Size": "Grande",
+                "Hot-or-Ice.original": "Hot",
+                "Dairy": "Fat Free",
+                "Hot-or-Ice": "Hot",
+                "user-name.original": "",
+                "Coffee": "Caffe Latte"
+            },
+            "lifespan": 1
+        }],
+        "metadata": {
+            "intentId": "376f9eac-612f-44e7-9731-6512d973afa9",
+            "webhookUsed": "true",
+            "webhookForSlotFillingUsed": "false",
+            "intentName": "Coffee Order"
+        },
+        "fulfillment": {
+            "speech": "We are almost done! Would you like to *schedule* your delivery?",
+            "messages": [{
+                "type": 0,
+                "speech": "We are almost done!\nWould you like to *schedule* your delivery?"
+            }, {
+                "type": 4,
+                "payload": {
+                    "slack": {
+                        "text": "",
+                        "attachments": [{
+                            "text": "You can simply type or choose from here..",
+                            "fallback": "Delivery service not available.",
+                            "callback_id": "wopr_delivery",
+                            "color": "#8ce88b",
+                            "attachment_type": "default",
+                            "actions": [{
+                                "name": "Yes",
+                                "text": "Yes",
+                                "type": "button",
+                                "value": "Yes"
+                            }, {
+                                "name": "No",
+                                "text": "No",
+                                "type": "button",
+                                "value": "No"
+                            }]
+                        }]
+                    }
+                }
+            }]
+        },
+        "score": 1
+    },
+    "status": {
+        "code": 200,
+        "errorType": "success",
+        "webhookTimedOut": false
+    },
+    "sessionId": "3d29f0d4-eb1c-4c35-a223-838156decdce"
+}
