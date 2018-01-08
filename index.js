@@ -49,13 +49,13 @@ app.post('/webhook', function (req, res) {
         if (userType === "newUser") {
             greetings += "Nice to meet you ";
             greetings += userName.toString();
-            greetings += ":wave: \n I am CoffeeMe Bot :robot_face: \n You can simply order your coffee\n It will delivered to your desk :seat:"
+            greetings += ":wave: \n I am CoffeeMe Bot :robot_face: \n Schedule your coffee and receive at your desk :seat:"
             greetings += "\nPlease order your Coffee :coffee:";
         } else {
             
             greetings += "Welcome back ";
             greetings += userName.toString();
-            greetings += ":sunglasses: \n I am CoffeeMe Bot :robot_face: \n You can simply order your coffee\n It will delivered to your desk :seat:"
+            greetings += ":sunglasses: \n I am CoffeeMe Bot :robot_face: \n Schedule your coffee and receive at your desk :seat:"
             greetings += "\nWhich coffee is in your mind?"
         }
 
